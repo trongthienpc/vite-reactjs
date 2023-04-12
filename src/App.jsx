@@ -1,118 +1,66 @@
-import React, { Component } from "react";
-import PropTypes from "prop-types";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { connect } from "react-redux";
-
-// Import Routes
-import { authProtectedRoutes, publicRoutes } from "./routes/";
-import AppRoute from "./routes/route";
-
-// layouts
-import VerticalLayout from "./components/VerticalLayout/";
-import HorizontalLayout from "./components/HorizontalLayout/";
+import React from "react";
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+  useLocation,
+  Navigate,
+} from "react-router-dom";
+import { publicRoutes, authProtectedRoutes } from "./routes/index";
 import NonAuthLayout from "./components/NonAuthLayout";
-
+import VerticalLayout from "./components/VerticalLayout/Index";
 // Import scss
 import "./assets/scss/theme.scss";
-// Import Firebase Configuration file
-// import { initFirebaseBackend } from "./helpers/firebase_helper"
+import Login from "./pages/Authentication/Login";
 
-// Import fackbackend Configuration file
-import fakeBackend from "./helpers/AuthType/fakeBackend";
-
-// Activating fake backend
-fakeBackend();
-
-// Activating fake firebase
-// const firebaseConfig = {
-//   apiKey: import.meta.env.VITE_APP_APIKEY,
-//   authDomain: import.meta.env.VITE_APP_AUTHDOMAIN,
-//   databaseURL: import.meta.env.VITE_APP_DATABASEURL,
-//   projectId: import.meta.env.VITE_APP_PROJECTID,
-//   storageBucket: import.meta.env.VITE_APP_STORAGEBUCKET,
-//   messagingSenderId: import.meta.env.VITE_APP_MESSAGINGSENDERID,
-//   appId: import.meta.env.VITE_APP_APPID,
-//   measurementId: import.meta.env.VITE_APP_MEASUREMENTID,
-// };
-
-// init firebase backend
-// initFirebaseBackend(firebaseConfig);
-
-class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {};
-    this.getLayout = this.getLayout.bind(this);
-  }
-
-  /**
-   * Returns the layout
-   */
-  getLayout = () => {
-    let layoutCls = VerticalLayout;
-
-    switch (this.props.layout.layoutType) {
-      case "horizontal":
-        layoutCls = HorizontalLayout;
-        break;
-      default:
-        layoutCls = VerticalLayout;
-        break;
-    }
-    return layoutCls;
-  };
-
-  render() {
-    const Layout = this.getLayout();
-
-    return (
-      <React.Fragment>
-        <Router>
-          <Routes>
-            {publicRoutes.map((route, idx) => (
-              <Route
-                path={route.path}
-                element={
-                  <AppRoute
-                    layout={NonAuthLayout}
-                    component={route.component}
-                    key={idx}
-                    isAuthProtected={false}
-                  />
-                }
-                key={idx}
-              />
-            ))}
-
-            {authProtectedRoutes.map((route, idx) => (
-              <Route
-                path={route.path}
-                element={
-                  <AppRoute
-                    layout={Layout}
-                    component={route.component}
-                    key={idx}
-                    isAuthProtected={true}
-                  />
-                }
-                key={idx}
-              />
-            ))}
-          </Routes>
-        </Router>
-      </React.Fragment>
-    );
-  }
+// check authorized
+function RequireAuth({ children }) {
+  // console.log("let me first");
+  let login = useSelector((state) => state.auth?.login);
+  const location = useLocation();
+  const from = location.pathname || "/test";
+  // console.log(["login", login]);
+  if (!login?.user?.accessToken)
+    return <Navigate to="/login" state={{ from: from }} />;
+  return children;
 }
 
-const mapStateToProps = (state) => {
-  return {
-    layout: state.Layout,
-  };
+const App = () => {
+  return (
+    <BrowserRouter>
+      <Routes>
+        {/* {publicRoutes.map((route, idx) => (
+          <Route
+            path={route.path}
+            element={
+              <NonAuthLayout>
+                <route.component />
+              </NonAuthLayout>
+            }
+            key={idx}
+          />
+        ))}
+
+        <Route
+          path="/"
+          element={
+            <RequireAuth>
+              <VerticalLayout />
+            </RequireAuth>
+          }
+        >
+          {authProtectedRoutes.map((route, idx) => (
+            <Route path={route.path} element={<route.element />} key={idx} />
+          ))}
+        </Route> */}
+        <Route
+          path="/"
+          element={<VerticalLayout isPreloader={false} />}
+        ></Route>
+        <Route path="/login" element={<Login />} />
+      </Routes>
+    </BrowserRouter>
+  );
 };
 
-App.propTypes = {
-  layout: PropTypes.object,
-};
-
-export default connect(mapStateToProps, null)(App);
+export default App;

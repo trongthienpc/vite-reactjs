@@ -1,81 +1,14 @@
-import React, { Component } from "react";
-import PropTypes from "prop-types";
-
+import React from "react";
 import { Alert, Card, CardBody, Col, Container, Row, Label } from "reactstrap";
-
-// Redux
-import { connect } from "react-redux";
-import { Link, withRouter } from "react-router-dom";
-
-//Social Media Imports
-import { GoogleLogin } from "react-google-login";
-import FacebookLogin from "react-facebook-login/dist/facebook-login-render-props";
-
-//Import config
-// import { facebook, google } from "../../config";
-
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import * as Yup from "yup";
-
-// actions
-import { apiError, loginUser, socialLogin } from "../../store/actions";
-
+import { Link } from "react-router-dom";
 // import images
 import profile from "../../assets/images/profile-img.png";
 import logo from "../../assets/images/logo.svg";
 import lightlogo from "../../assets/images/logo-light.svg";
 
-const Login = (props) => {
-  const { error, history, loginUser } = props;
-
-  signIn = (res, type) => {
-    const { socialLogin } = props;
-    if (type === "google" && res) {
-      const postData = {
-        name: res.profileObj.name,
-        email: res.profileObj.email,
-        token: res.tokenObj.access_token,
-        idToken: res.tokenId,
-      };
-      socialLogin(postData, props.history, type);
-    } else if (type === "facebook" && res) {
-      const postData = {
-        name: res.name,
-        email: res.email,
-        token: res.accessToken,
-        idToken: res.tokenId,
-      };
-      socialLogin(postData, props.history, type);
-    }
-  };
-
-  //handleGoogleLoginResponse
-  googleResponse = (response) => {
-    signIn(response, "google");
-  };
-
-  //handleTwitterLoginResponse
-  twitterResponse = () => {};
-
-  //handleFacebookLoginResponse
-  facebookResponse = (response) => {
-    signIn(response, "facebook");
-  };
-
-  const initialValues = {
-    email: (props?.state && props.state?.email) || "admin@themesbrand.com",
-    password: (props?.state && props?.state.password) || "123456",
-  };
-
-  const validationSchema = Yup.object().shape({
-    email: Yup.string().required("Please Enter Your Email"),
-    password: Yup.string().required("Please Enter Valid Password"),
-  });
-
-  const handleSubmit = (values) => {
-    loginUser(values, history);
-  };
-
+const Login = () => {
   return (
     <React.Fragment>
       <div className="home-btn d-none d-sm-block">
@@ -129,14 +62,19 @@ const Login = (props) => {
                     </Link>
                   </div>
                   <div className="p-2">
-                    {error && error ? (
-                      <Alert color="danger">{error}</Alert>
-                    ) : null}
                     <Formik
                       enableReinitialize={true}
-                      initialValues={initialValues}
-                      validationSchema={validationSchema}
-                      onSubmit={handleSubmit}
+                      initialValues={{
+                        email: "admin@themesbrand.com",
+                        password: "123456",
+                      }}
+                      validationSchema={Yup.object().shape({
+                        email: Yup.string().required("Please Enter Your Email"),
+                        password: Yup.string().required(
+                          "Please Enter Valid Password"
+                        ),
+                      })}
+                      onSubmit={(values) => {}}
                     >
                       {({ errors, status, touched }) => (
                         <Form className="form-horizontal">
@@ -215,47 +153,6 @@ const Login = (props) => {
                           </div>
 
                           <div className="mt-4 text-center">
-                            <h5 className="font-size-14 mb-3">Sign in with</h5>
-
-                            <ul className="list-inline">
-                              {/* <li className="list-inline-item">
-                                  <FacebookLogin
-                                    appId={facebook.APP_ID}
-                                    autoLoad={false}
-                                    callback={this.facebookResponse}
-                                    render={renderProps => (
-                                      <Link
-                                        to={""}
-                                        className="social-list-item bg-primary text-white border-primary"
-                                      >
-                                        <i className="mdi mdi-facebook" />
-                                      </Link>
-                                    )}
-                                  />
-                                </li> */}
-                              {/* <li className="list-inline-item">
-                                  {google.CLIENT_ID === "" ? (
-                                    ""
-                                  ) : (
-                                    <GoogleLogin
-                                      clientId={google.CLIENT_ID}
-                                      render={renderProps => (
-                                        <Link
-                                          to={""}
-                                          className="social-list-item bg-danger text-white border-danger"
-                                        >
-                                          <i className="mdi mdi-google" />
-                                        </Link>
-                                      )}
-                                      onSuccess={this.googleResponse}
-                                      onFailure={() => {}}
-                                    />
-                                  )}
-                                </li> */}
-                            </ul>
-                          </div>
-
-                          <div className="mt-4 text-center">
                             <Link to="/forgot-password" className="text-muted">
                               <i className="mdi mdi-lock me-1" /> Forgot your
                               password?
@@ -287,19 +184,4 @@ const Login = (props) => {
   );
 };
 
-Login.propTypes = {
-  apiError: PropTypes.any,
-  error: PropTypes.any,
-  history: PropTypes.object,
-  loginUser: PropTypes.func,
-  socialLogin: PropTypes.func,
-};
-
-const mapStateToProps = (state) => {
-  const { error } = state.Login;
-  return { error };
-};
-
-export default withRouter(
-  connect(mapStateToProps, { loginUser, apiError, socialLogin })(Login)
-);
+export default Login;
