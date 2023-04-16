@@ -166,9 +166,9 @@ const Login = () => {
               </Card>
               <div className="mt-5 text-center">
                 <p>
-                  Don&apos;t have an account ?
+                  Don&apos;t have an account? &nbsp;
                   <Link to="register" className="fw-medium text-primary">
-                    Signup Now
+                    Sign up Now
                   </Link>
                 </p>
                 <p>

@@ -18,7 +18,8 @@ import Sidebar from "./Sidebar";
 import Footer from "./Footer";
 import RightSidebar from "../CommonForBoth/RightSidebar";
 
-const Layout = ({ isPreloader = false, children }) => {
+const Layout = ({ children }) => {
+  const isPreloader = false;
   const [isMobile, setIsMobile] = useState(
     /iPhone|iPad|iPod|Android/i.test(navigator.userAgent)
   );

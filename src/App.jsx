@@ -1,65 +1,24 @@
 import React from "react";
-import {
-  BrowserRouter,
-  Routes,
-  Route,
-  useLocation,
-  Navigate,
-} from "react-router-dom";
-import { publicRoutes, authProtectedRoutes } from "./routes/index";
-import NonAuthLayout from "./components/NonAuthLayout";
-import VerticalLayout from "./components/VerticalLayout/Index";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+
 // Import scss
 import "./assets/scss/theme.scss";
 import Login from "./pages/Authentication/Login";
-
-// check authorized
-function RequireAuth({ children }) {
-  // console.log("let me first");
-  let login = useSelector((state) => state.auth?.login);
-  const location = useLocation();
-  const from = location.pathname || "/test";
-  // console.log(["login", login]);
-  if (!login?.user?.accessToken)
-    return <Navigate to="/login" state={{ from: from }} />;
-  return children;
-}
+import Register from "./pages/Authentication/Register";
+import UserProfile from "./pages/Authentication/UserProfile";
+import ForgetPassword from "./pages/Authentication/ForgetPassword";
 
 const App = () => {
   return (
-    <BrowserRouter>
+    <Router>
       <Routes>
-        {/* {publicRoutes.map((route, idx) => (
-          <Route
-            path={route.path}
-            element={
-              <NonAuthLayout>
-                <route.component />
-              </NonAuthLayout>
-            }
-            key={idx}
-          />
-        ))}
-
-        <Route
-          path="/"
-          element={
-            <RequireAuth>
-              <VerticalLayout />
-            </RequireAuth>
-          }
-        >
-          {authProtectedRoutes.map((route, idx) => (
-            <Route path={route.path} element={<route.element />} key={idx} />
-          ))}
-        </Route> */}
-        <Route
-          path="/"
-          element={<VerticalLayout isPreloader={false} />}
-        ></Route>
+        <Route path="/" element={<Register />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/user-profile" element={<UserProfile />} />
+        <Route path="/forget-password" element={<ForgetPassword />} />
+        <Route path="/register" element={<Register />} />
       </Routes>
-    </BrowserRouter>
+    </Router>
   );
 };
 

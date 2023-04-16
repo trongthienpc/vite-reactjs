@@ -157,7 +157,7 @@ function Register({ apiError, registerUser, registerUserFailed }) {
 
                           <div className="mt-4 text-center">
                             <p className="mb-0">
-                              By registering you agree to the Skote{" "}
+                              By registering you agree with our{" "}
                               <Link to="#" className="text-primary">
                                 Terms of Use
                               </Link>
@@ -177,10 +177,7 @@ function Register({ apiError, registerUser, registerUserFailed }) {
                     Login
                   </Link>{" "}
                 </p>
-                <p>
-                  © {new Date().getFullYear()} Skote. Crafted with{" "}
-                  <i className="mdi mdi-heart text-danger" /> by Themesbrand
-                </p>
+                <p>© {new Date().getFullYear()} Custom by @David John</p>
               </div>
             </Col>
           </Row>
