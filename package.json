@@ -9,6 +9,8 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "classnames": "^2.3.2",
+    "lodash": "^4.17.21",
     "prop-types": "^15.8.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
@@ -24,6 +26,7 @@
     "formik": "^2.2.9",
     "metismenujs": "^1.4.0",
     "node-scss": "^7.0.3",
+    "react-countdown": "^2.3.5",
     "react-facebook-login": "^4.1.1",
     "react-google-login": "^5.2.2",
     "react-i18next": "^12.2.0",

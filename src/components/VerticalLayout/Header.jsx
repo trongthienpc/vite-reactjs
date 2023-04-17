@@ -1,5 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
+import LanguageDropdown from "../CommonForBoth/TopbarDropdown/LanguageDropdown";
+import NotificationDropdown from "../CommonForBoth/TopbarDropdown/NotificationDropdown";
+import ProfileMenu from "../CommonForBoth/TopbarDropdown/ProfileMenu";
 import megamenuImg from "../../assets/images/megamenu-img.png";
 
 // import images
@@ -12,6 +15,8 @@ import slack from "../../assets/images/brands/slack.png";
 
 import logo from "../../assets/images/logo.svg";
 import logoLightSvg from "../../assets/images/logo-light.svg";
+import { Link } from "react-router-dom";
+import { Col, Dropdown, DropdownMenu, DropdownToggle, Row } from "reactstrap";
 
 const Header = ({ toggleMenuCallback, toggleRightSidebar }) => {
   const [isSearch, setIsSearch] = useState(false);
