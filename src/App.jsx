@@ -22,9 +22,9 @@ const App = () => {
       <Routes>
         <Route path="/" element={<VerticalLayout />}>
           <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/profile" element={<UserProfile />} />
         </Route>
         <Route path="/login" element={<Login />} />
-        <Route path="/user-profile" element={<UserProfile />} />
         <Route path="/forget-password" element={<ForgetPassword />} />
         <Route path="/register" element={<Register />} />
         <Route path="/page404" element={<Page404 />} />
