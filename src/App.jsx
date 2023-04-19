@@ -15,12 +15,34 @@ import PageMaintenance from "./pages/Utilities/pages-maintenance";
 import PagePricing from "./pages/Utilities/page-pricing";
 import Dashboard from "./pages/Dashboard";
 import VerticalLayout from "./components/VerticalLayout/Index";
+import HorizontalLayout from "./components/HorizontalLayout/index";
+import { layoutTypes } from "./constants/layout";
+import { useSelector } from "react-redux";
 
+const getLayout = (layoutType) => {
+  let Layout = VerticalLayout;
+  switch (layoutType) {
+    case layoutTypes.VERTICAL:
+      Layout = VerticalLayout;
+      break;
+    case layoutTypes.HORIZONTAL:
+      Layout = HorizontalLayout;
+      break;
+    default:
+      break;
+  }
+  return Layout;
+};
 const App = () => {
+  const { layoutType } = useSelector((state) => ({
+    layoutType: state.Layout.layoutType,
+  }));
+
+  const Layout = getLayout(layoutType);
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<VerticalLayout />}>
+        <Route path="/" element={<Layout />}>
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/profile" element={<UserProfile />} />
         </Route>

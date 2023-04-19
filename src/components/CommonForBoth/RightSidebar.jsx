@@ -15,15 +15,15 @@ import {
 } from "../../constants/layout";
 /** Import actions */
 import {
-  hideRightSidebar,
   changeLayout,
+  changeLayoutMode,
   changeLayoutWidth,
   changeSidebarTheme,
   changeSidebarThemeImage,
   changeSidebarType,
   changePreloader,
   changeTopbarTheme,
-  toggleRightSidebar,
+  showRightSidebarAction,
 } from "../../store/actions";
 //Import images
 import bgimg1 from "../../assets/images/sidebar/img1.jpg";
@@ -38,7 +38,7 @@ import layout6 from "../../assets/images/layouts/layout-3.jpg";
 // import { changePreloaderAction } from "../../store/layout/_layoutSlice";
 
 const RightSidebar = () => {
-  const layout = useSelector((state) => state.layout);
+  const layout = useSelector((state) => state.Layout);
   const dispatch = useDispatch();
   // const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
 
@@ -71,11 +71,9 @@ const RightSidebar = () => {
     // dispatch(changePreloaderAction(!isPreloader));
   };
 
-  const handleLayout = (e) => {
-    if (e.target.checked) {
-      changeLayout(e.target.value, dispatch);
-      setLayoutType(e.target.value);
-    }
+  const handleLayout = (value) => {
+    console.log("value :>> ", value);
+    dispatch(changeLayout(value));
   };
   const handleLayoutWidth = (e) => {
     if (e.target.checked) {
@@ -109,7 +107,7 @@ const RightSidebar = () => {
   };
 
   const handleToggle = () => {
-    toggleRightSidebar(dispatch);
+    dispatch(showRightSidebarAction(false));
   };
 
   return (
@@ -120,7 +118,10 @@ const RightSidebar = () => {
             <div className="rightbar-title px-3 py-4">
               <Link
                 to="#"
-                onClick={handleToggle}
+                onClick={(e) => {
+                  e.preventDefault();
+                  handleToggle();
+                }}
                 className="right-bar-toggle float-end"
               >
                 <i className="mdi mdi-close noti-icon" />
@@ -139,7 +140,9 @@ const RightSidebar = () => {
                   name="radioFruit"
                   value={layoutTypes.VERTICAL}
                   checked={layout.layoutType === layoutTypes.VERTICAL}
-                  onChange={(e) => handleLayout(e)}
+                  onChange={(e) => {
+                    if (e.target.checked) handleLayout(e.target.value);
+                  }}
                 />
                 <label htmlFor="radioVertical">Vertical</label>
                 {"   "}
@@ -149,7 +152,9 @@ const RightSidebar = () => {
                   name="radioFruit"
                   value={layoutTypes.HORIZONTAL}
                   checked={layout.layoutType === layoutTypes.HORIZONTAL}
-                  onChange={(e) => handleLayout(e)}
+                  onChange={(e) => {
+                    if (e.target.checked) handleLayout(e.target.value);
+                  }}
                 />
                 <label htmlFor="radioHorizontal">Horizontal</label>
               </div>

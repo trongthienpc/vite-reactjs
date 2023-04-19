@@ -4,6 +4,7 @@ import Footer from "./Footer";
 import Sidebar from "./Sidebar";
 import { Outlet } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+import RightSidebar from "../CommonForBoth/RightSidebar";
 const Index = () => {
   const dispatch = useDispatch();
 
@@ -54,7 +55,7 @@ const Index = () => {
         </div>
         <Footer />
       </div>
-      {/* {showRightSidebar ? <RightSidebar /> : null} */}
+      {showRightSidebar ? <RightSidebar /> : null}
     </>
   );
 };
