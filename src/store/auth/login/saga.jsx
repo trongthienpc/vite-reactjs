@@ -5,14 +5,14 @@ import { LOGIN_USER, LOGOUT_USER, SOCIAL_LOGIN } from "./actionTypes";
 import { loginSuccess, logoutUserSuccess, apiError } from "./actions";
 
 //Include Both Helper File with needed methods
-import { getFirebaseBackend } from "../../../helpers/firebase_helper";
-import {
-  postFakeLogin,
-  postJwtLogin,
-  postSocialLogin,
-} from "../../../helpers/fakebackend_helper";
+// import { getFirebaseBackend } from "../../../helpers/firebase_helper";
+// import {
+//   postFakeLogin,
+//   postJwtLogin,
+//   postSocialLogin,
+// } from "../../../helpers/fakebackend_helper";
 
-const fireBaseBackend = getFirebaseBackend();
+// const fireBaseBackend = getFirebaseBackend();
 
 function* loginUser({ payload: { user, history } }) {
   try {
@@ -24,14 +24,14 @@ function* loginUser({ payload: { user, history } }) {
       );
       yield put(loginSuccess(response));
     } else if (import.meta.env.VITE_APP_DEFAULTAUTH === "jwt") {
-      const response = yield call(postJwtLogin, {
+      const response = yield call("postJwtLogin", {
         email: user.email,
         password: user.password,
       });
       localStorage.setItem("authUser", JSON.stringify(response));
       yield put(loginSuccess(response));
     } else if (import.meta.env.VITE_APP_DEFAULTAUTH === "fake") {
-      const response = yield call(postFakeLogin, {
+      const response = yield call("", {
         email: user.email,
         password: user.password,
       });
@@ -49,7 +49,7 @@ function* logoutUser({ payload: { history } }) {
     localStorage.removeItem("authUser");
 
     if (import.meta.env.VITE_APP_DEFAULTAUTH === "firebase") {
-      const response = yield call(fireBaseBackend.logout);
+      const response = yield call("fireBaseBackend".logout);
       yield put(logoutUserSuccess(response));
     }
     history.push("/login");

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Dropdown,
   DropdownItem,
@@ -8,10 +8,22 @@ import {
 
 import languages from "../../Common/data/languages";
 import { map } from "lodash";
+import i18n from "../../../i18n";
 
 const LanguageDropdown = () => {
   const [menu, setMenu] = useState(false);
   const [selectedLang, setSelectedLang] = useState("en");
+  useEffect(() => {
+    const currentLanguage = localStorage.getItem("I18N_LANGUAGE");
+    setSelectedLang(currentLanguage);
+  }, []);
+
+  const changeLanguageAction = (lang) => {
+    //set language as i18n
+    i18n.changeLanguage(lang);
+    localStorage.setItem("I18N_LANGUAGE", lang);
+    setSelectedLang(lang);
+  };
   const toggle = () => {
     setMenu(!menu);
   };
@@ -20,7 +32,7 @@ const LanguageDropdown = () => {
       <Dropdown isOpen={menu} toggle={toggle} className="d-inline-block">
         <DropdownToggle className="btn header-item" tag="button">
           <img
-            src={languages[selectedLang].flag}
+            src={languages[selectedLang]?.flag}
             alt="Skote"
             height="16"
             className="me-1"
@@ -30,7 +42,7 @@ const LanguageDropdown = () => {
           {map(Object.keys(languages), (key) => (
             <DropdownItem
               key={key}
-              onClick={() => this.changeLanguageAction(key)}
+              onClick={() => changeLanguageAction(key)}
               className={`notify-item ${
                 selectedLang === key ? "active" : "none"
               }`}

@@ -5,10 +5,11 @@ import {
   CHANGE_SIDEBAR_THEME_IMAGE,
   CHANGE_SIDEBAR_TYPE,
   CHANGE_TOPBAR_THEME,
-  TOGGLE_RIGHT_SIDEBAR,
   SHOW_RIGHT_SIDEBAR,
+  SHOW_SIDEBAR,
   CHANGE_PRELOADER,
-  HIDE_RIGHT_SIDEBAR,
+  TOGGLE_LEFTMENU,
+  CHANGE_LAYOUT_MODE,
 } from "./actionTypes";
 
 export const changeLayout = (layout) => ({
@@ -19,6 +20,11 @@ export const changeLayout = (layout) => ({
 export const changePreloader = (layout) => ({
   type: CHANGE_PRELOADER,
   payload: layout,
+});
+
+export const changeLayoutMode = (layoutMode) => ({
+  type: CHANGE_LAYOUT_MODE,
+  payload: layoutMode,
 });
 
 export const changeLayoutWidth = (width) => ({
@@ -48,17 +54,17 @@ export const changeTopbarTheme = (topbarTheme) => ({
   payload: topbarTheme,
 });
 
-export const toggleRightSidebar = () => ({
-  type: TOGGLE_RIGHT_SIDEBAR,
-  payload: null,
-});
-
-export const showRightSidebar = (isopen) => ({
+export const showRightSidebarAction = (isopen) => ({
   type: SHOW_RIGHT_SIDEBAR,
   payload: isopen,
 });
 
-export const hideRightSidebar = () => ({
-  type: HIDE_RIGHT_SIDEBAR,
-  payload: null,
+export const showSidebar = (isopen) => ({
+  type: SHOW_SIDEBAR,
+  payload: isopen,
+});
+
+export const toggleLeftmenu = (isopen) => ({
+  type: TOGGLE_LEFTMENU,
+  payload: isopen,
 });

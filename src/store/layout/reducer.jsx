@@ -3,18 +3,20 @@ import {
   CHANGE_LAYOUT,
   CHANGE_LAYOUT_WIDTH,
   CHANGE_SIDEBAR_THEME,
-  CHANGE_SIDEBAR_THEME_IMAGE,
   CHANGE_SIDEBAR_TYPE,
   CHANGE_TOPBAR_THEME,
-  TOGGLE_RIGHT_SIDEBAR,
   SHOW_RIGHT_SIDEBAR,
+  CHANGE_SIDEBAR_THEME_IMAGE,
   CHANGE_PRELOADER,
-  HIDE_RIGHT_SIDEBAR,
+  TOGGLE_LEFTMENU,
+  SHOW_SIDEBAR,
+  CHANGE_LAYOUT_MODE,
 } from "./actionTypes";
 
 //constants
 import {
   layoutTypes,
+  layoutModeTypes,
   layoutWidthTypes,
   topBarThemeTypes,
   leftBarThemeImageTypes,
@@ -24,6 +26,7 @@ import {
 
 const INIT_STATE = {
   layoutType: layoutTypes.VERTICAL,
+  layoutModeType: layoutModeTypes.LIGHT,
   layoutWidth: layoutWidthTypes.FLUID,
   leftSideBarTheme: leftSideBarThemeTypes.DARK,
   leftSideBarThemeImage: leftBarThemeImageTypes.NONE,
@@ -47,6 +50,12 @@ const Layout = (state = INIT_STATE, action) => {
       return {
         ...state,
         isPreloader: action.payload,
+      };
+
+    case CHANGE_LAYOUT_MODE:
+      return {
+        ...state,
+        layoutModeType: action.payload,
       };
 
     case CHANGE_LAYOUT_WIDTH:
@@ -74,21 +83,22 @@ const Layout = (state = INIT_STATE, action) => {
         ...state,
         topbarTheme: action.payload,
       };
-    case TOGGLE_RIGHT_SIDEBAR:
-      return {
-        ...state,
-        showRightSidebar: !state.showRightSidebar,
-      };
     case SHOW_RIGHT_SIDEBAR:
       return {
         ...state,
-        showRightSidebar: true,
+        showRightSidebar: action.payload,
       };
-    case HIDE_RIGHT_SIDEBAR:
+    case SHOW_SIDEBAR:
       return {
         ...state,
-        showRightSidebar: false,
+        showSidebar: action.payload,
       };
+    case TOGGLE_LEFTMENU:
+      return {
+        ...state,
+        leftMenu: action.payload,
+      };
+
     default:
       return state;
   }

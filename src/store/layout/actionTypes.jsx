@@ -8,10 +8,15 @@ export const CHANGE_SIDEBAR_TYPE = "CHANGE_SIDEBAR_TYPE";
 // topbar
 export const CHANGE_TOPBAR_THEME = "CHANGE_TOPBAR_THEME";
 
+// show sidebar
+export const SHOW_SIDEBAR = "SHOW_SIDEBAR";
+export const TOGGLE_LEFTMENU = "TOGGLE_LEFTMENU";
+
 /* RIGHT SIDEBAR */
-export const TOGGLE_RIGHT_SIDEBAR = "TOGGLE_RIGHT_SIDEBAR";
 export const SHOW_RIGHT_SIDEBAR = "SHOW_RIGHT_SIDEBAR";
-export const HIDE_RIGHT_SIDEBAR = "HIDE_RIGHT_SIDEBAR";
 
 // Preloader
 export const CHANGE_PRELOADER = "CHANGE_PRELOADER";
+
+// Layout mode
+export const CHANGE_LAYOUT_MODE = "CHANGE_LAYOUT_MODE";

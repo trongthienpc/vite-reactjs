@@ -9,6 +9,11 @@ const layoutWidthTypes = {
   SCROLLABLE: "scrollable",
 };
 
+const layoutModeTypes = {
+  DARK: "dark",
+  LIGHT: "light",
+};
+
 const topBarThemeTypes = {
   LIGHT: "light",
   DARK: "dark",
@@ -42,6 +47,7 @@ const leftSideBarThemeTypes = {
 
 export {
   layoutTypes,
+  layoutModeTypes,
   layoutWidthTypes,
   topBarThemeTypes,
   leftBarThemeImageTypes,

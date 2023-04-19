@@ -12,7 +12,7 @@ const NotificationDropdown = () => {
   const [menu, setMenu] = useState(false);
   const { t } = useTranslation();
   const toggle = () => {
-    setMenu(menu);
+    setMenu(!menu);
   };
   return (
     <React.Fragment>

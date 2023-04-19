@@ -17,19 +17,26 @@ import logo from "../../assets/images/logo.svg";
 import logoLightSvg from "../../assets/images/logo-light.svg";
 import { Link } from "react-router-dom";
 import { Col, Dropdown, DropdownMenu, DropdownToggle, Row } from "reactstrap";
+// Redux Store
+import {
+  toggleLeftmenu,
+  changeSidebarType,
+  showRightSidebarAction,
+} from "../../store/actions";
+import { useDispatch } from "react-redux";
 
-const Header = ({ toggleMenuCallback, toggleRightSidebar }) => {
+const Header = ({ toggleMenuCallback }) => {
   const [isSearch, setIsSearch] = useState(false);
   const [megaMenuDrp, setMegaMenuDrp] = useState(false);
   const [socialDrp, setSocialDrp] = useState(false);
   const { t } = useTranslation();
-
+  const dispatch = useDispatch();
   const toggleMenu = () => {
     toggleMenuCallback();
   };
 
-  const toggleRightbar = () => {
-    toggleRightSidebar();
+  const toggleRightbar = (item) => {
+    dispatch(!item);
   };
 
   const toggleFullscreen = () => {
@@ -58,6 +65,16 @@ const Header = ({ toggleMenuCallback, toggleRightSidebar }) => {
       }
     }
   };
+
+  function tToggle() {
+    var body = document.body;
+    if (window.screen.width <= 998) {
+      body.classList.toggle("sidebar-enable");
+    } else {
+      body.classList.toggle("vertical-collpsed");
+      body.classList.toggle("sidebar-enable");
+    }
+  }
   return (
     <React.Fragment>
       <header id="page-topbar">
@@ -79,7 +96,9 @@ const Header = ({ toggleMenuCallback, toggleRightSidebar }) => {
 
             <button
               type="button"
-              onClick={toggleMenu}
+              onClick={() => {
+                tToggle();
+              }}
               className="btn btn-sm px-3 font-size-16 header-item"
               id="vertical-menu-btn"
             >
@@ -362,7 +381,7 @@ const Header = ({ toggleMenuCallback, toggleRightSidebar }) => {
             <div className="dropdown d-inline-block">
               <button
                 onClick={() => {
-                  toggleRightbar();
+                  toggleRightbar(showRightSidebarAction);
                 }}
                 type="button"
                 className="btn header-item noti-icon right-bar-toggle"
