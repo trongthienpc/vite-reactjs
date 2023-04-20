@@ -1,14 +1,13 @@
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { apiError, registerUser, registerUserFailed } from "../redux/actions";
 import { Card, CardBody, Col, Container, Label, Row } from "reactstrap";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 
-import profileImg from "../assets/images/profile-img.png";
-import logoImg from "../assets/images/logo.svg";
+import profileImg from "../../assets/images/profile-img.png";
+import logoImg from "../../assets/images/logo.svg";
 
 function Register({ apiError, registerUser, registerUserFailed }) {
   const [state, setState] = useState({
@@ -18,8 +17,8 @@ function Register({ apiError, registerUser, registerUserFailed }) {
   });
 
   useEffect(() => {
-    apiError("");
-    registerUserFailed("");
+    // apiError("");
+    // registerUserFailed("");
   }, []);
 
   const initialValues = {
@@ -109,7 +108,7 @@ function Register({ apiError, registerUser, registerUserFailed }) {
                           </div>
                           <div className="mb-3">
                             <Label for="email" className="form-label">
-                              Email
+                              Username
                             </Label>
                             <Field
                               name="email"
@@ -129,7 +128,7 @@ function Register({ apiError, registerUser, registerUserFailed }) {
                           </div>
                           <div className="mb-3">
                             <Label for="email" className="form-label">
-                              Email
+                              Password
                             </Label>
                             <Field
                               name="email"
@@ -158,7 +157,7 @@ function Register({ apiError, registerUser, registerUserFailed }) {
 
                           <div className="mt-4 text-center">
                             <p className="mb-0">
-                              By registering you agree to the Skote{" "}
+                              By registering you agree with our{" "}
                               <Link to="#" className="text-primary">
                                 Terms of Use
                               </Link>
@@ -178,10 +177,7 @@ function Register({ apiError, registerUser, registerUserFailed }) {
                     Login
                   </Link>{" "}
                 </p>
-                <p>
-                  © {new Date().getFullYear()} Skote. Crafted with{" "}
-                  <i className="mdi mdi-heart text-danger" /> by Themesbrand
-                </p>
+                <p>© {new Date().getFullYear()} Custom by @David John</p>
               </div>
             </Col>
           </Row>
@@ -190,21 +186,5 @@ function Register({ apiError, registerUser, registerUserFailed }) {
     </>
   );
 }
-Register.propTypes = {
-  apiError: PropTypes.any,
-  registerUser: PropTypes.func,
-  registerUserFailed: PropTypes.any,
-  registrationError: PropTypes.any,
-  user: PropTypes.object,
-};
 
-const mapStateToProps = (state) => {
-  const { user, registrationError, loading } = state.Account;
-  return { user, registrationError, loading };
-};
-
-export default connect(mapStateToProps, {
-  registerUser,
-  apiError,
-  registerUserFailed,
-})(Register);
+export default Register;

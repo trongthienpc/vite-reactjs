@@ -1,13 +1,17 @@
 @import "./icons.scss";
 
-// Dark Theme
-// @import "./bootstrap-dark.scss";
-// @import "./app-dark.scss";
-
 // Light Theme
 @import "./bootstrap.scss";
 @import "./app.scss";
 
+[data-layout-mode='dark']{
+  // @import "./bootstrap-dark.scss";
+  @import "./variables.scss";
+  @import "./app-dark.scss";
+  .right-bar {
+    right: 0
+  }
+}
 // RTL Mode
 // @import "./rtl/bootstrap-rtl";
 // @import "./rtl/components-rtl";
@@ -384,4 +388,25 @@ span.flatpickr-weekday {
 /*  tui charts**/
 .tui-chart .tui-chart-chartExportMenu-area {
   z-index: 1 !important;
+}
+
+
+[data-layout-mode="dark"] {
+  .rdw-option-wrapper,
+  .rdw-dropdown-selectedtext {
+    img {
+      filter: invert(1) !important;
+    }
+  }
+}
+
+[data-layout-mode="dark"]{
+  .auth-logo{
+    .auth-logo-light{
+      display: block;
+    }
+    .auth-logo-dark{
+      display: none;
+    }
+  }
 }

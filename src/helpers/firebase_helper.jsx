@@ -5,20 +5,13 @@ import { Alert, Card, CardBody, Col, Container, Row, Label } from "reactstrap";
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import * as Yup from "yup";
 
-// action
-import {
-  apiError,
-  registerUser,
-  registerUserFailed,
-} from "../../store/actions";
-
 // Redux
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 
 // import images
-import profileImg from "../../assets/images/profile-img.png";
-import logoImg from "../../assets/images/logo.svg";
+import profileImg from "../assets/images/profile-img.png";
+import logoImg from "../assets/images/logo.svg";
 
 const Register = (props) => {
   useEffect(() => {

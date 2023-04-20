@@ -1,61 +1,118 @@
-import {
-  Routes,
-  Route,
-  BrowserRouter,
-  Link,
-  Navigate,
-  Outlet,
-} from "react-router-dom";
+import React, { Component } from "react";
+import PropTypes from "prop-types";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { connect } from "react-redux";
 
-export default function App() {
-  return (
-    <BrowserRouter>
-      <MyMenu />
-      <Routes>
-        <Route path="/" element={<Public />} />
-        <Route path="/private-outlet" element={<PrivateOutlet />}>
-          <Route path="" element={<Private />} />
-        </Route>
-        <Route
-          path="/private-nested"
-          element={
-            <PrivateRoute>
-              <Private />
-            </PrivateRoute>
-          }
-        />
-        <Route path="/login" element={<Login />} />
-      </Routes>
-    </BrowserRouter>
-  );
+// Import Routes
+import { authProtectedRoutes, publicRoutes } from "./routes/";
+import AppRoute from "./routes/route";
+
+// layouts
+import VerticalLayout from "./components/VerticalLayout/";
+import HorizontalLayout from "./components/HorizontalLayout/";
+import NonAuthLayout from "./components/NonAuthLayout";
+
+// Import scss
+import "./assets/scss/theme.scss";
+// Import Firebase Configuration file
+// import { initFirebaseBackend } from "./helpers/firebase_helper"
+
+// Import fackbackend Configuration file
+import fakeBackend from "./helpers/AuthType/fakeBackend";
+
+// Activating fake backend
+fakeBackend();
+
+// Activating fake firebase
+// const firebaseConfig = {
+//   apiKey: import.meta.env.VITE_APP_APIKEY,
+//   authDomain: import.meta.env.VITE_APP_AUTHDOMAIN,
+//   databaseURL: import.meta.env.VITE_APP_DATABASEURL,
+//   projectId: import.meta.env.VITE_APP_PROJECTID,
+//   storageBucket: import.meta.env.VITE_APP_STORAGEBUCKET,
+//   messagingSenderId: import.meta.env.VITE_APP_MESSAGINGSENDERID,
+//   appId: import.meta.env.VITE_APP_APPID,
+//   measurementId: import.meta.env.VITE_APP_MEASUREMENTID,
+// };
+
+// init firebase backend
+// initFirebaseBackend(firebaseConfig);
+
+class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {};
+    this.getLayout = this.getLayout.bind(this);
+  }
+
+  /**
+   * Returns the layout
+   */
+  getLayout = () => {
+    let layoutCls = VerticalLayout;
+
+    switch (this.props.layout.layoutType) {
+      case "horizontal":
+        layoutCls = HorizontalLayout;
+        break;
+      default:
+        layoutCls = VerticalLayout;
+        break;
+    }
+    return layoutCls;
+  };
+
+  render() {
+    const Layout = this.getLayout();
+
+    return (
+      <React.Fragment>
+        <Router>
+          <Routes>
+            {publicRoutes.map((route, idx) => (
+              <Route
+                path={route.path}
+                element={
+                  <AppRoute
+                    layout={NonAuthLayout}
+                    component={route.component}
+                    key={idx}
+                    isAuthProtected={false}
+                  />
+                }
+                key={idx}
+              />
+            ))}
+
+            {authProtectedRoutes.map((route, idx) => (
+              <Route
+                path={route.path}
+                element={
+                  <AppRoute
+                    layout={Layout}
+                    component={route.component}
+                    key={idx}
+                    isAuthProtected={true}
+                  />
+                }
+                key={idx}
+              />
+            ))}
+          </Routes>
+        </Router>
+      </React.Fragment>
+    );
+  }
 }
 
-const Public = () => <div>public</div>;
-const Private = () => <div>private</div>;
-const Login = () => <div>login</div>;
+const mapStateToProps = (state) => {
+  return {
+    layout: state.Layout,
+  };
+};
 
-function PrivateOutlet() {
-  const auth = useAuth();
-  return auth ? <Outlet /> : <Navigate to="/login" />;
-}
+App.propTypes = {
+  layout: PropTypes.object,
+};
 
-function PrivateRoute({ children }) {
-  const auth = useAuth();
-  return auth ? children : <Navigate to="/login" />;
-}
-
-function useAuth() {
-  return true;
-}
-
-function MyMenu() {
-  return (
-    <nav>
-      <Link to="/">Public</Link>
-      {" | "}
-      <Link to="/private-nested">Private Using Nested</Link>
-      {" | "}
-      <Link to="/private-outlet">Private Using Outlet</Link>
-    </nav>
-  );
-}
+export default connect(mapStateToProps, null)(App);
