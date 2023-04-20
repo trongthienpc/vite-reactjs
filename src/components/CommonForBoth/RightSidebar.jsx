@@ -5,14 +5,18 @@ import { Col, FormGroup, Row } from "reactstrap";
 import { Link } from "react-router-dom";
 import SimpleBar from "simplebar-react";
 import "./rightbar.scss";
+
+//constants
 import {
   layoutTypes,
+  layoutModeTypes,
   layoutWidthTypes,
-  leftBarThemeImageTypes,
-  leftSideBarThemeTypes,
-  leftSidebarTypes,
   topBarThemeTypes,
+  leftBarThemeImageTypes,
+  leftSidebarTypes,
+  leftSideBarThemeTypes,
 } from "../../constants/layout";
+
 /** Import actions */
 import {
   changeLayout,
@@ -25,15 +29,15 @@ import {
   changeTopbarTheme,
   showRightSidebarAction,
 } from "../../store/actions";
+
 //Import images
 import bgimg1 from "../../assets/images/sidebar/img1.jpg";
 import bgimg2 from "../../assets/images/sidebar/img2.jpg";
 import bgimg3 from "../../assets/images/sidebar/img3.jpg";
 import bgimg4 from "../../assets/images/sidebar/img4.jpg";
-
-import layout4 from "../../assets/images/layouts/layout-1.jpg";
-import layout5 from "../../assets/images/layouts/layout-2.jpg";
-import layout6 from "../../assets/images/layouts/layout-3.jpg";
+import layout1 from "../../assets/images/layouts/layout-1.jpg";
+import layout2 from "../../assets/images/layouts/layout-2.jpg";
+import layout3 from "../../assets/images/layouts/layout-3.jpg";
 
 // import { changePreloaderAction } from "../../store/layout/_layoutSlice";
 
@@ -75,6 +79,7 @@ const RightSidebar = () => {
     console.log("value :>> ", value);
     dispatch(changeLayout(value));
   };
+
   const handleLayoutWidth = (e) => {
     if (e.target.checked) {
       setLayoutWidth(e.target.value);
@@ -132,6 +137,7 @@ const RightSidebar = () => {
             <hr className="my-0" />
 
             <div className="p-4">
+              {/* Layouts */}
               <div className="radio-toolbar">
                 <span className="mb-2 d-block">Layouts</span>
                 <input
@@ -158,9 +164,43 @@ const RightSidebar = () => {
                 />
                 <label htmlFor="radioHorizontal">Horizontal</label>
               </div>
+              <br />
 
-              <hr className="mt-1" />
+              {/* Layouts Mode */}
+              <div className="radio-toolbar">
+                <span className="mb-2 d-block">Layouts Mode</span>
+                <input
+                  type="radio"
+                  id="radioLight"
+                  name="radioLight"
+                  value={layoutModeTypes.LIGHT}
+                  checked={layout?.layoutModeType === layoutModeTypes.LIGHT}
+                  onChange={(e) => {
+                    if (e.target.checked) {
+                      dispatch(changeLayoutMode(e.target.value));
+                    }
+                  }}
+                />
+                <label className="me-1" htmlFor="radioLight">
+                  Light
+                </label>
+                <input
+                  type="radio"
+                  id="radioDark"
+                  name="radioDark"
+                  value={layoutModeTypes.DARK}
+                  checked={layout?.layoutModeType === layoutModeTypes.DARK}
+                  onChange={(e) => {
+                    if (e.target.checked) {
+                      dispatch(changeLayoutMode(e.target.value));
+                    }
+                  }}
+                />
+                <label htmlFor="radioDark">Dark</label>
+              </div>
 
+              {/* Layout Width */}
+              <br />
               <div className="radio-toolbar">
                 <span className="mb-2 d-block" id="radio-title">
                   Layout Width
@@ -171,7 +211,7 @@ const RightSidebar = () => {
                   name="radioWidth"
                   value={layoutWidthTypes.FLUID}
                   checked={layout.layoutWidth === layoutWidthTypes.FLUID}
-                  onChange={(e) => handleLayoutWidth(e)}
+                  onChange={(e) => dispatch(changeLayoutWidth(e.target.value))}
                 />
                 <label htmlFor="radioFluid">Fluid</label>
                 {"   "}
@@ -181,7 +221,7 @@ const RightSidebar = () => {
                   name="radioWidth"
                   value={layoutWidthTypes.BOXED}
                   checked={layout.layoutWidth === layoutWidthTypes.BOXED}
-                  onChange={(e) => handleLayoutWidth(e)}
+                  onChange={(e) => dispatch(changeLayoutWidth(e.target.value))}
                 />
                 <label htmlFor="radioBoxed" className="me-2">
                   Boxed
@@ -192,12 +232,13 @@ const RightSidebar = () => {
                   name="radioscrollable"
                   value={layoutWidthTypes.SCROLLABLE}
                   checked={layout.layoutWidth === layoutWidthTypes.SCROLLABLE}
-                  onChange={(e) => handleLayoutWidth(e)}
+                  onChange={(e) => dispatch(changeLayoutWidth(e.target.value))}
                 />
                 <label htmlFor="radioscrollable">Scrollable</label>
               </div>
-              <hr className="mt-1" />
 
+              {/* Topbar Theme */}
+              <br />
               <div className="radio-toolbar">
                 <span className="mb-2 d-block" id="radio-title">
                   Topbar Theme
@@ -207,8 +248,8 @@ const RightSidebar = () => {
                   id="radioThemeLight"
                   name="radioTheme"
                   value={topBarThemeTypes.LIGHT}
-                  checked={layout.topBarTheme === topBarThemeTypes.LIGHT}
-                  onChange={(e) => handleTopBarTheme(e)}
+                  checked={layout.topbarTheme === topBarThemeTypes.LIGHT}
+                  onChange={(e) => dispatch(changeTopbarTheme(e.target.value))}
                 />
 
                 <label htmlFor="radioThemeLight">Light</label>
@@ -218,8 +259,8 @@ const RightSidebar = () => {
                   id="radioThemeDark"
                   name="radioTheme"
                   value={topBarThemeTypes.DARK}
-                  checked={layout.topBarTheme === topBarThemeTypes.DARK}
-                  onChange={(e) => handleTopBarTheme(e)}
+                  checked={layout.topbarTheme === topBarThemeTypes.DARK}
+                  onChange={(e) => dispatch(changeTopbarTheme(e.target.value))}
                 />
                 <label htmlFor="radioThemeDark">Dark</label>
                 {layoutType === "vertical" ? null : (
@@ -230,16 +271,19 @@ const RightSidebar = () => {
                       id="radioThemeColored"
                       name="radioTheme"
                       value={topBarThemeTypes.COLORED}
-                      checked={layout.topBarTheme === topBarThemeTypes.COLORED}
-                      onChange={(e) => handleTopBarTheme(e)}
+                      checked={layout.topbarTheme === topBarThemeTypes.COLORED}
+                      onChange={(e) =>
+                        dispatch(changeTopbarTheme(e.target.value))
+                      }
                     />
                     <label htmlFor="radioThemeColored">Colored</label>{" "}
                   </>
                 )}
               </div>
+
+              <br />
               {layoutType === "vertical" ? (
                 <React.Fragment>
-                  <hr className="mt-1" />
                   <div className="radio-toolbar">
                     <span className="mb-2 d-block" id="radio-title">
                       Left Sidebar Type
@@ -252,7 +296,9 @@ const RightSidebar = () => {
                       checked={
                         layout.leftSideBarType === leftSidebarTypes.DEFAULT
                       }
-                      onChange={(e) => handleSideBarType(e)}
+                      onChange={(e) =>
+                        dispatch(changeSidebarType(e.target.value))
+                      }
                     />
 
                     <label htmlFor="sidebarDefault">Default</label>
@@ -265,7 +311,9 @@ const RightSidebar = () => {
                       checked={
                         layout.leftSideBarType === leftSidebarTypes.COMPACT
                       }
-                      onChange={(e) => handleSideBarType(e)}
+                      onChange={(e) =>
+                        dispatch(changeSidebarType(e.target.value))
+                      }
                     />
                     <label htmlFor="sidebarCompact">Compact</label>
                     {"   "}
@@ -275,13 +323,14 @@ const RightSidebar = () => {
                       name="sidebarType"
                       value={leftSidebarTypes.ICON}
                       checked={layout.leftSideBarType === leftSidebarTypes.ICON}
-                      onChange={(e) => handleSideBarType(e)}
+                      onChange={(e) =>
+                        dispatch(changeSidebarType(e.target.value))
+                      }
                     />
                     <label htmlFor="sidebarIcon">Icon</label>
                   </div>
 
-                  <hr className="mt-1" />
-
+                  <br />
                   <div className="radio-toolbar coloropt-radio">
                     <span className="mb-2 d-block" id="radio-title">
                       Left Sidebar Color Options
@@ -297,7 +346,9 @@ const RightSidebar = () => {
                             layout.leftSideBarTheme ===
                             leftSideBarThemeTypes.LIGHT
                           }
-                          onChange={(e) => handleSideBarTheme(e)}
+                          onChange={(e) =>
+                            dispatch(changeSidebarTheme(e.target.value))
+                          }
                         />
 
                         <label
@@ -314,7 +365,9 @@ const RightSidebar = () => {
                             layout.leftSideBarTheme ===
                             leftSideBarThemeTypes.DARK
                           }
-                          onChange={(e) => handleSideBarTheme(e)}
+                          onChange={(e) =>
+                            dispatch(changeSidebarTheme(e.target.value))
+                          }
                         />
                         <label
                           htmlFor="leftsidebarThemedark"
@@ -329,7 +382,9 @@ const RightSidebar = () => {
                             layout.leftSideBarTheme ===
                             leftSideBarThemeTypes.COLORED
                           }
-                          onChange={(e) => handleSideBarTheme(e)}
+                          onChange={(e) =>
+                            dispatch(changeSidebarTheme(e.target.value))
+                          }
                         />
                         <label
                           htmlFor="leftsidebarThemecolored"
@@ -348,7 +403,9 @@ const RightSidebar = () => {
                             layout.leftSideBarTheme ===
                             leftSideBarThemeTypes.WINTER
                           }
-                          onChange={(e) => handleSideBarTheme(e)}
+                          onChange={(e) =>
+                            dispatch(changeSidebarTheme(e.target.value))
+                          }
                         />
                         <label
                           htmlFor="leftsidebarThemewinter"
@@ -364,7 +421,9 @@ const RightSidebar = () => {
                             layout.leftSideBarTheme ===
                             leftSideBarThemeTypes.LADYLIP
                           }
-                          onChange={(e) => handleSideBarTheme(e)}
+                          onChange={(e) =>
+                            dispatch(changeSidebarTheme(e.target.value))
+                          }
                         />
                         <label
                           htmlFor="leftsidebarThemeladylip"
@@ -380,7 +439,9 @@ const RightSidebar = () => {
                             layout.leftSideBarTheme ===
                             leftSideBarThemeTypes.PLUMPLATE
                           }
-                          onChange={(e) => handleSideBarTheme(e)}
+                          onChange={(e) =>
+                            dispatch(changeSidebarTheme(e.target.value))
+                          }
                         />
                         <label
                           htmlFor="leftsidebarThemeplumplate"
@@ -396,7 +457,9 @@ const RightSidebar = () => {
                             layout.leftSideBarTheme ===
                             leftSideBarThemeTypes.STRONGBLISS
                           }
-                          onChange={(e) => handleSideBarTheme(e)}
+                          onChange={(e) =>
+                            dispatch(changeSidebarTheme(e.target.value))
+                          }
                         />
                         <label
                           htmlFor="leftsidebarThemestrongbliss"
@@ -412,7 +475,9 @@ const RightSidebar = () => {
                             layout.leftSideBarTheme ===
                             leftSideBarThemeTypes.GREATWHALE
                           }
-                          onChange={(e) => handleSideBarTheme(e)}
+                          onChange={(e) =>
+                            dispatch(changeSidebarTheme(e.target.value))
+                          }
                         />
                         <label
                           htmlFor="leftsidebarThemesgreatwhale"
@@ -422,8 +487,8 @@ const RightSidebar = () => {
                     </Row>
                   </div>
 
-                  <hr className="mt-1" />
-
+                  {/* images */}
+                  <br />
                   <div className="radio-toolbar imgopt-radio">
                     <span className="mb-2 d-block" id="radio-bgimg">
                       Left Sidebar Bg Image
@@ -438,7 +503,9 @@ const RightSidebar = () => {
                           layout.leftSideBarThemeImage ===
                           leftBarThemeImageTypes.IMG1
                         }
-                        onChange={(e) => handleSidebarThemeImage(e)}
+                        onChange={(e) =>
+                          dispatch(changeSidebarThemeImage(e.target.value))
+                        }
                       />
 
                       <label htmlFor="leftsidebarThemebgimg1">
@@ -460,7 +527,9 @@ const RightSidebar = () => {
                           layout.leftSideBarThemeImage ===
                           leftBarThemeImageTypes.IMG2
                         }
-                        onChange={(e) => handleSidebarThemeImage(e)}
+                        onChange={(e) =>
+                          dispatch(changeSidebarThemeImage(e.target.value))
+                        }
                       />
 
                       <label htmlFor="leftsidebarThemebgimg2">
@@ -482,7 +551,9 @@ const RightSidebar = () => {
                           layout.leftSideBarThemeImage ===
                           leftBarThemeImageTypes.IMG3
                         }
-                        onChange={(e) => handleSidebarThemeImage(e)}
+                        onChange={(e) =>
+                          dispatch(changeSidebarThemeImage(e.target.value))
+                        }
                       />
 
                       <label htmlFor="leftsidebarThemebgimg3">
@@ -504,7 +575,9 @@ const RightSidebar = () => {
                           layout.leftSideBarThemeImage ===
                           leftBarThemeImageTypes.IMG4
                         }
-                        onChange={(e) => handleSidebarThemeImage(e)}
+                        onChange={(e) =>
+                          dispatch(changeSidebarThemeImage(e.target.value))
+                        }
                       />
 
                       <label htmlFor="leftsidebarThemebgimg4">
@@ -526,7 +599,9 @@ const RightSidebar = () => {
                           layout.leftSideBarThemeImage ===
                           leftBarThemeImageTypes.NONE
                         }
-                        onChange={(e) => handleSidebarThemeImage(e)}
+                        onChange={(e) =>
+                          dispatch(changeSidebarThemeImage(e.target.value))
+                        }
                       />
                       <label htmlFor="leftsidebarThemenone">
                         <div style={{ width: "40px", height: "80px" }}>
@@ -564,6 +639,7 @@ const RightSidebar = () => {
           </div>
         </SimpleBar>
       </div>
+      <div className="rightbar-overlay"></div>
     </React.Fragment>
   );
 };

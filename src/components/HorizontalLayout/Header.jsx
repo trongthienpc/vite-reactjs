@@ -94,7 +94,7 @@ const Header = (props) => {
               className="btn btn-sm px-3 font-size-16 d-lg-none header-item"
               data-toggle="collapse"
               onClick={() => {
-                dispatch(toggleLeftmenu(layoutState?.leftMenu));
+                dispatch(toggleLeftmenu(!layoutState?.leftMenu));
               }}
               data-target="#topnav-menu-content"
             >

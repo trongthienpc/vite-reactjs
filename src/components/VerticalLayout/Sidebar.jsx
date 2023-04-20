@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import { NavLink, Outlet } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 import SidebarContent from "./SidebarContent";
 
@@ -7,10 +7,11 @@ import logo from "../../assets/images/logo.svg";
 import logoLightPng from "../../assets/images/logo-light.png";
 import logoLightSvg from "../../assets/images/logo-light.svg";
 import logoDark from "../../assets/images/logo-dark.png";
+import React from "react";
 
 function Sidebar(props) {
   return (
-    <>
+    <React.Fragment>
       <div className="vertical-menu">
         <div className="navbar-brand-box">
           <NavLink to="/" className="logo logo-dark">
@@ -32,11 +33,11 @@ function Sidebar(props) {
           </NavLink>
         </div>
         <div data-simplebar className="h-100">
-          {props.type !== "condensed" ? <SidebarContent /> : <SidebarContent />}
+          <SidebarContent />
         </div>
         <div className="sidebar-background"></div>
       </div>
-    </>
+    </React.Fragment>
   );
 }
 

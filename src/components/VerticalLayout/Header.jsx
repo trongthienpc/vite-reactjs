@@ -18,11 +18,7 @@ import logoLightSvg from "../../assets/images/logo-light.svg";
 import { Link } from "react-router-dom";
 import { Col, Dropdown, DropdownMenu, DropdownToggle, Row } from "reactstrap";
 // Redux Store
-import {
-  toggleLeftmenu,
-  changeSidebarType,
-  showRightSidebarAction,
-} from "../../store/actions";
+import { showRightSidebarAction } from "../../store/actions";
 import { useDispatch, useSelector } from "react-redux";
 
 const Header = ({ toggleMenuCallback }) => {
@@ -38,6 +34,7 @@ const Header = ({ toggleMenuCallback }) => {
   };
 
   const toggleRightbar = () => {
+    console.log("toggleRightbar :>> ");
     dispatch(showRightSidebarAction(!layoutState?.showRightSidebar));
   };
 
