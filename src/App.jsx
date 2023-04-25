@@ -14,8 +14,29 @@ import NonAuthLayout from "./components/NonAuthLayout";
 
 // Import scss
 import "./assets/scss/theme.scss";
+<<<<<<< HEAD
 // Import Firebase Configuration file
 // import { initFirebaseBackend } from "./helpers/firebase_helper"
+=======
+import Login from "./pages/Authentication/Login";
+import Register from "./pages/Authentication/Register";
+import UserProfile from "./pages/Authentication/UserProfile";
+import ForgetPassword from "./pages/Authentication/ForgetPassword";
+import Page404 from "./pages/Utilities/page-404";
+import Page500 from "./pages/Utilities/page-500";
+import PageComingSoon from "./pages/Utilities/pages-comingsoon";
+import PageFaqs from "./pages/Utilities/pages-faqs";
+import PageMaintenance from "./pages/Utilities/pages-maintenance";
+import PagePricing from "./pages/Utilities/page-pricing";
+import Dashboard from "./pages/Dashboard";
+import VerticalLayout from "./components/VerticalLayout/Index";
+import HorizontalLayout from "./components/HorizontalLayout/index";
+import { layoutTypes } from "./constants/layout";
+import { useSelector } from "react-redux";
+import fakeBackend from "./helpers/AuthType/fakeBackend";
+
+fakeBackend();
+>>>>>>> pc-work
 
 // Import fackbackend Configuration file
 import fakeBackend from "./helpers/AuthType/fakeBackend";

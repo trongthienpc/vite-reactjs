@@ -51,7 +51,7 @@ const ProfileMenu = () => {
         </DropdownToggle>
         <DropdownMenu className="dropdown-menu-end">
           <DropdownItem tag="a" href="/profile">
-            <i className="bx bx-user font-size-16 align-middle ms-1" />
+            <i className="bx bx-user font-size-16 align-middle me-1" />
             {t("Profile")}
           </DropdownItem>
           <DropdownItem tag="a" href="/crypto-wallet">

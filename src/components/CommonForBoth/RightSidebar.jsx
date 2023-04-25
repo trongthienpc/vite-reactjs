@@ -51,22 +51,6 @@ const RightSidebar = () => {
     let device = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
     setIsMobile(device);
   }, []);
-  const [layoutType, setLayoutType] = useState(layout?.layoutType);
-
-  const [layoutWidth, setLayoutWidth] = useState(layout?.layoutWidth);
-
-  const [topBarTheme, setTopbarTheme] = useState(layout?.topBarTheme);
-
-  // props.leftSideBarType
-  const [sidebarType, setSidebarType] = useState(layout?.leftSideBarType);
-
-  // props.leftSideBarTheme
-  const [sidebarTheme, setSidebarTheme] = useState(layout?.leftSideBarTheme);
-
-  // props.leftSideBarThemeImage,
-  const [sidebarThemeImage, setSidebarThemeImage] = useState(
-    layout?.leftSideBarThemeImage
-  );
 
   const [isPreloader, setIsPreloader] = useState(layout?.isPreloader);
 
@@ -78,37 +62,6 @@ const RightSidebar = () => {
   const handleLayout = (value) => {
     console.log("value :>> ", value);
     dispatch(changeLayout(value));
-  };
-
-  const handleLayoutWidth = (e) => {
-    if (e.target.checked) {
-      setLayoutWidth(e.target.value);
-      changeLayoutWidth(e.target.value, dispatch);
-    }
-  };
-  const handleTopBarTheme = (e) => {
-    if (e.target.checked) {
-      setTopbarTheme(e.target.value);
-      changeTopbarTheme(e.target.value, dispatch);
-    }
-  };
-  const handleSideBarType = (e) => {
-    if (e.target.checked) {
-      changeLeftSidebarType(e.target.value, isMobile, dispatch);
-      setSidebarType(e.target.value);
-    }
-  };
-  const handleSideBarTheme = (e) => {
-    if (e.target.checked) {
-      setSidebarTheme(e.target.value);
-      changeLeftSidebarTheme(e.target.value, dispatch);
-    }
-  };
-  const handleSidebarThemeImage = (e) => {
-    if (e.target.checked) {
-      setSidebarThemeImage(e.target.value);
-      changeLeftSidebarThemeImage(e.target.value, dispatch);
-    }
   };
 
   const handleToggle = () => {
@@ -263,7 +216,7 @@ const RightSidebar = () => {
                   onChange={(e) => dispatch(changeTopbarTheme(e.target.value))}
                 />
                 <label htmlFor="radioThemeDark">Dark</label>
-                {layoutType === "vertical" ? null : (
+                {layout?.layoutType === "vertical" ? null : (
                   <>
                     {" "}
                     <input
@@ -282,7 +235,7 @@ const RightSidebar = () => {
               </div>
 
               <br />
-              {layoutType === "vertical" ? (
+              {layout?.layoutType === "vertical" ? (
                 <React.Fragment>
                   <div className="radio-toolbar">
                     <span className="mb-2 d-block" id="radio-title">
@@ -353,7 +306,11 @@ const RightSidebar = () => {
 
                         <label
                           htmlFor="leftsidebarThemelight"
-                          className="bg-light rounded-circle wh-30"
+                          className={
+                            layout?.layoutModeType === "dark"
+                              ? "bg-dark rounded-circle wh-30 me-1"
+                              : "bg-light rounded-circle wh-30 me-1"
+                          }
                         ></label>
                         {"   "}
                         <input
@@ -371,7 +328,11 @@ const RightSidebar = () => {
                         />
                         <label
                           htmlFor="leftsidebarThemedark"
-                          className="bg-dark rounded-circle wh-30"
+                          className={
+                            layout?.layoutModeType === "light"
+                              ? "bg-dark rounded-circle wh-30 me-1"
+                              : "bg-light rounded-circle wh-30 me-1"
+                          }
                         ></label>
                         <input
                           type="radio"

@@ -28,7 +28,7 @@
           content: "\F012C";
           position: absolute;
           font-family: "Material Design Icons";
-          color: $white;
+          color: var(--#{$prefix}light);
           font-size: 14px;
           top: 50%;
           left: 50%;

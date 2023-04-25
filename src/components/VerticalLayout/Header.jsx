@@ -26,7 +26,6 @@ const Header = ({ toggleMenuCallback }) => {
   const [megaMenuDrp, setMegaMenuDrp] = useState(false);
   const [socialDrp, setSocialDrp] = useState(false);
   const layoutState = useSelector((state) => state.Layout);
-  console.log("layoutState :>> ", layoutState);
   const { t } = useTranslation();
   const dispatch = useDispatch();
   const toggleMenu = () => {
@@ -34,7 +33,6 @@ const Header = ({ toggleMenuCallback }) => {
   };
 
   const toggleRightbar = () => {
-    console.log("toggleRightbar :>> ");
     dispatch(showRightSidebarAction(!layoutState?.showRightSidebar));
   };
 

@@ -136,7 +136,12 @@ export const getMessages = (roomId = "") =>
   get(`${url.GET_MESSAGES}/${roomId}`, { params: { roomId } });
 
 // post messages
-export const addMessage = (message) => post(url.ADD_MESSAGE, message);
+export const getselectedmails = (selectedmails) =>
+  post(url.GET_SELECTED_MAILS, selectedmails);
+
+//post setfolderonmails
+export const setfolderonmails = (selectedmails, folderId, activeTab) =>
+  post(url.SET_FOLDER_SELECTED_MAILS, { selectedmails, folderId, activeTab });
 
 // get orders
 export const getOrders = () => get(url.GET_ORDERS);
@@ -157,14 +162,14 @@ export const getCartData = () => get(url.GET_CART_DATA);
 // get customers
 export const getCustomers = () => get(url.GET_CUSTOMERS);
 
-// add customer
+// add CUSTOMER
 export const addNewCustomer = (customer) =>
   post(url.ADD_NEW_CUSTOMER, customer);
 
-// update customer
+// update CUSTOMER
 export const updateCustomer = (customer) => put(url.UPDATE_CUSTOMER, customer);
 
-// delete customer
+// delete CUSTOMER
 export const deleteCustomer = (customer) =>
   del(url.DELETE_CUSTOMER, { headers: { customer } });
 
@@ -177,6 +182,9 @@ export const getWallet = () => get(url.GET_WALLET);
 // get crypto order
 export const getCryptoOrder = () => get(url.GET_CRYPTO_ORDERS);
 
+// get crypto product
+export const getCryptoProduct = () => get(url.GET_CRYPTO_PRODUCTS);
+
 // get invoices
 export const getInvoices = () => get(url.GET_INVOICES);
 
@@ -184,22 +192,18 @@ export const getInvoices = () => get(url.GET_INVOICES);
 export const getInvoiceDetail = (id) =>
   get(`${url.GET_INVOICE_DETAIL}/${id}`, { params: { id } });
 
+// get jobs
+export const getJobList = () => get(url.GET_JOB_LIST);
+
+// get Apply Jobs
+export const getApplyJob = () => get(url.GET_APPLY_JOB);
+
 // get project
 export const getProjects = () => get(url.GET_PROJECTS);
 
 // get project details
 export const getProjectsDetails = (id) =>
   get(`${url.GET_PROJECT_DETAIL}/${id}`, { params: { id } });
-
-// add project
-export const addNewProject = (project) => post(url.ADD_NEW_PROJECT, project);
-
-// update project
-export const updateProject = (project) => put(url.UPDATE_PROJECT, project);
-
-// delete project
-export const deleteProject = (project) =>
-  del(url.DELETE_PROJECT, { headers: { project } });
 
 // get tasks
 export const getTasks = () => get(url.GET_TASKS);
@@ -216,43 +220,95 @@ export const updateUser = (user) => put(url.UPDATE_USER, user);
 // delete user
 export const deleteUser = (user) => del(url.DELETE_USER, { headers: { user } });
 
+// add jobs
+export const addNewJobList = (job) => post(url.ADD_NEW_JOB_LIST, job);
+
+// update jobs
+export const updateJobList = (job) => put(url.UPDATE_JOB_LIST, job);
+
+// delete jobs
+export const deleteJobList = (job) =>
+  del(url.DELETE_JOB_LIST, { headers: { job } });
+
+// Delete Apply Jobs
+export const deleteApplyJob = (data) =>
+  del(url.DELETE_APPLY_JOB, { headers: { data } });
+
+/** PROJECT */
+// add user
+export const addNewProject = (project) => post(url.ADD_NEW_PROJECT, project);
+
+// update user
+export const updateProject = (project) => put(url.UPDATE_PROJECT, project);
+
+// delete user
+export const deleteProject = (project) =>
+  del(url.DELETE_PROJECT, { headers: { project } });
+
 export const getUserProfile = () => get(url.GET_USER_PROFILE);
 
-// get inboxmail
-export const getInboxMails = () => get(url.GET_INBOX_MAILS);
+// get maillist
+export const getMailsLists = (filter) =>
+  post(url.GET_MAILS_LIST, {
+    params: filter,
+  });
 
-// add inboxmail
-export const addNewInboxMail = (inboxmail) =>
-  post(url.ADD_NEW_INBOX_MAIL, inboxmail);
+//update mail
+export const updateMail = (mail) => put(url.UPDATE_MAIL, mail);
 
-// delete inboxmail
-export const deleteInboxMail = (inboxmail) =>
-  del(url.DELETE_INBOX_MAIL, { headers: { inboxmail } });
+// get folderlist
+export const selectFolders = () => get(url.SELECT_FOLDER);
 
-// get starredmail
-export const getStarredMails = () => get(url.GET_STARRED_MAILS);
-// get importantmail
-export const getImportantMails = () => get(url.GET_IMPORTANT_MAILS);
-
-// get sent mail
-export const getSentMails = () => get(url.GET_SENT_MAILS);
-
-// get trash mail
-export const getTrashMails = () => get(url.GET_TRASH_MAILS);
-
-// get starredmail
-export const getDraftMails = () => get(url.GET_DRAFT_MAILS);
+// post messages
+export const addMessage = (message) => post(url.ADD_MESSAGE, message);
 
 // get dashboard charts data
 export const getWeeklyData = () => get(url.GET_WEEKLY_DATA);
 export const getYearlyData = () => get(url.GET_YEARLY_DATA);
-export const getMonthlyData = () => get(url.GET_MONTHLY_DATA);
+export const getMonthlyData = () => {
+  console.log("getMonthlyData");
+  get(url.GET_MONTHLY_DATA);
+};
+
+export const walletBalanceData = (month) =>
+  get(`${url.GET_WALLET_DATA}/${month}`, { params: { month } });
+
+export const getStatisticData = (duration) =>
+  get(`${url.GET_STATISTICS_DATA}/${duration}`, { params: { duration } });
+
+export const visitorData = (duration) =>
+  get(`${url.GET_VISITOR_DATA}/${duration}`, { params: { duration } });
 
 export const topSellingData = (month) =>
   get(`${url.TOP_SELLING_DATA}/${month}`, { params: { month } });
 
 export const getEarningChartsData = (month) =>
   get(`${url.GET_EARNING_DATA}/${month}`, { params: { month } });
+
+const getProductComents = () => get(url.GET_PRODUCT_COMMENTS);
+
+const onLikeComment = (commentId, productId) => {
+  return post(`${url.ON_LIKNE_COMMENT}/${productId}/${commentId}`, {
+    params: { commentId, productId },
+  });
+};
+const onLikeReply = (commentId, productId, replyId) => {
+  return post(`${url.ON_LIKNE_COMMENT}/${productId}/${commentId}/${replyId}`, {
+    params: { commentId, productId, replyId },
+  });
+};
+
+const onAddReply = (commentId, productId, replyText) => {
+  return post(`${url.ON_ADD_REPLY}/${productId}/${commentId}`, {
+    params: { commentId, productId, replyText },
+  });
+};
+
+const onAddComment = (productId, commentText) => {
+  return post(`${url.ON_ADD_COMMENT}/${productId}`, {
+    params: { productId, commentText },
+  });
+};
 
 export {
   getLoggedInUser,
@@ -265,4 +321,9 @@ export {
   postJwtLogin,
   postJwtForgetPwd,
   postJwtProfile,
+  getProductComents,
+  onLikeComment,
+  onLikeReply,
+  onAddReply,
+  onAddComment,
 };
