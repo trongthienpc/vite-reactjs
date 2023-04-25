@@ -44,3 +44,33 @@
         fill: $gray-500;
     }
 }
+
+[data-layout-mode="dark"] {
+    .apexcharts-gridline {
+        stroke: var(--#{$prefix}gray-300);
+    }
+
+    .apexcharts-radialbar-track.apexcharts-track {
+        path {
+            stroke: var(--#{$prefix}gray-300);
+        }
+    }
+
+    .apexcharts-tooltip {
+        background-color: var(--#{$prefix}custom-white) !important;
+        border: 1px solid var(--#{$prefix}border-color) !important;
+
+        .apexcharts-tooltip-title {
+            background-color: var(--#{$prefix}gray-300) !important;
+            border-bottom: 1px solid var(--#{$prefix}border-color) !important;
+        }
+    }
+
+    .apexcharts-pie-area {
+        stroke: var(--#{$prefix}gray-300);
+    }
+
+    .apexcharts-pie-label {
+        fill: var(--#{$prefix}gray-600) !important;
+    }
+}

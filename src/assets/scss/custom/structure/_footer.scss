@@ -4,7 +4,7 @@
 
 .footer {
     bottom: 0;
-    padding: 20px calc(#{$grid-gutter-width} / 2);
+    padding: 20px calc(#{$grid-gutter-width} * 0.75);
     position: absolute;
     right: 0;
     color: $footer-color;
@@ -33,3 +33,4 @@ body[data-layout="horizontal"] {
         left: 0 !important;
     }  
 }
+

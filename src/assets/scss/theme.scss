@@ -4,14 +4,15 @@
 @import "./bootstrap.scss";
 @import "./app.scss";
 
-[data-layout-mode='dark']{
-  // @import "./bootstrap-dark.scss";
-  @import "./variables.scss";
-  @import "./app-dark.scss";
-  .right-bar {
-    right: 0
-  }
-}
+// [data-layout-mode='dark']{
+//   // @import "./bootstrap-dark.scss";
+//   @import "./variables.scss";
+//   @import "./app-dark.scss";
+//   .right-bar {
+//     right: 0
+//   }
+// }
+
 // RTL Mode
 // @import "./rtl/bootstrap-rtl";
 // @import "./rtl/components-rtl";
@@ -44,68 +45,110 @@ body {
 .leaflet-pane {
   z-index: 1;
 }
+
 svg > rect:first-child {
   fill-opacity: 0 !important;
 }
+
 .dataTables_filter,
 .dataTables_paginate {
   float: right;
 }
+
 .rdw-editor-main {
   border: 1px solid $gray-300;
   height: 239px;
   padding-left: 15px;
 }
+
 .dz-message {
   text-align: center;
   padding: 30px;
 }
+
 // kanban board
-.react-kanban-column {
-  height: 100%;
-  min-height: 28px;
-  display: inline-block;
-  padding: 15px;
-  border-radius: 2px;
-  background-color: rgb(238, 238, 238);
-  margin: 5px;
-  vertical-align: top;
+.react-kanban-board {
+  display: inherit !important;
+
+  .react-kanban-column {
+    background-color: $white;
+    padding: 1.25rem;
+
+    [data-rbd-draggable-context-id] {
+      > div {
+        display: block !important;
+      }
+    }
+  }
+
+  > div {
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+
+    @media (max-width: 991.98px) {
+      flex-direction: column;
+
+      .react-kanban-column {
+        width: 100%;
+      }
+    }
+  }
 }
+
+.react-kanban-column {
+  width: 33.33%;
+}
+
+.react-kanban-column > div {
+  display: block !important;
+}
+
 .fcYNFc,
 .sc-AxmLO.gmtmqV {
   background-color: $card-bg !important;
   margin: 0 20px 0 0 !important;
 }
+
 .task-box {
   border: 1px solid $border-color;
 }
+
 .react-datepicker-wrapper {
   width: 100% !important;
 }
+
 .ReactModal__Overlay {
   z-index: 1001 !important;
 }
+
 .external-event {
   &:hover {
     cursor: pointer;
   }
 }
+
 a:hover {
   cursor: pointer;
 }
+
 .rating-container {
   background-color: transparent !important;
 }
+
 .input-group-append {
   z-index: 0;
 }
+
 .input-color {
   color: $input-color !important;
 }
+
 .sketch-picker {
   position: absolute;
   z-index: 1;
 }
+
 .rangeslider__fill {
   background-color: $primary !important;
 }
@@ -118,18 +161,23 @@ a:hover {
 .flatpickr-months .flatpickr-month {
   background: $primary !important;
 }
+
 .flatpickr-weekdays {
   background: $primary !important;
 }
+
 span.flatpickr-weekday {
   background: $primary !important;
 }
+
 .flatpickr-current-month .flatpickr-monthDropdown-months {
   background: $primary !important;
 }
+
 span.flatpickr-weekday {
   color: $white !important;
 }
+
 .flatpickr-day.selected {
   background: $primary !important;
 }
@@ -157,10 +205,12 @@ span.flatpickr-weekday {
     display: none !important;
   }
 }
+
 .carousel {
   .control-dots {
     margin: -5px 0px;
   }
+
   .dot {
     background: #556ee6 !important;
     width: 9px !important;
@@ -237,6 +287,7 @@ span.flatpickr-weekday {
   .fc-toolbar {
     display: block !important;
     text-align: center;
+
     .fc-left,
     .fc-right,
     .fc-center {
@@ -246,6 +297,7 @@ span.flatpickr-weekday {
       margin: 10px 0;
     }
   }
+
   .fc {
     .fc-toolbar {
       > * {
@@ -255,6 +307,7 @@ span.flatpickr-weekday {
       }
     }
   }
+
   .fc-today-button {
     display: none;
   }
@@ -264,6 +317,7 @@ span.flatpickr-weekday {
 .ps__rail-y {
   z-index: 999999 !important;
 }
+
 .close {
   background: transparent;
   border: 0;
@@ -278,6 +332,7 @@ span.flatpickr-weekday {
   width: 1em;
   height: 1em;
   z-index: 2;
+
   span {
     display: none;
   }
@@ -310,10 +365,12 @@ span.flatpickr-weekday {
   z-index: 9999;
   background: #fff;
 }
+
 .drawer-main-menu {
   padding-top: 8px;
   padding-bottom: 8px;
 }
+
 .drawer-menu a i {
   min-width: 2rem;
   display: inline-block;
@@ -325,6 +382,7 @@ span.flatpickr-weekday {
   color: #7f8387;
   transition: all 0.4s;
 }
+
 .drawer-menu a {
   display: block;
   padding: 0.625rem 1.5rem;
@@ -333,23 +391,29 @@ span.flatpickr-weekday {
   font-size: 13px;
   transition: all 0.4s;
 }
+
 .drawer-close {
   padding: 0.5rem 0.5rem;
   margin: -0.5rem -0.5rem -0.5rem auto;
 }
+
 .ReactModal__Overlay {
   z-index: 5000 !important;
 }
+
 .rangeslider__handle:focus {
   outline: none;
 }
+
 // React Table next css
 .react-bootstrap-table-page-btns-ul {
   float: right !important;
 }
+
 .search-label {
   float: right;
 }
+
 .react-drawer-overlay {
   z-index: 9999;
 }
@@ -381,15 +445,129 @@ span.flatpickr-weekday {
 .css-sourceMap-modules-importLoaders-1-localIdentName-animate__animated___2O131 {
   animation-duration: 0.6s !important;
 }
+
 .css-sourceMap-modules-importLoaders-1-localIdentName-ReactDrawer__overlay___2QFmC-sass {
   background: rgba(0, 0, 0, 0.15) !important;
 }
 
-/*  tui charts**/
-.tui-chart .tui-chart-chartExportMenu-area {
-  z-index: 1 !important;
+//react-table
+.custom-header-css {
+  thead {
+    tr {
+      th {
+        div:last-child {
+          min-height: 38px;
+        }
+      }
+    }
+
+    td:nth-last-child(2) {
+      width: 150px !important;
+    }
+  }
 }
 
+.editor_email .ck-content {
+  height: 200px;
+}
+
+// .my-masonry-grid {
+//   display: -webkit-box;
+//   /* Not needed if autoprefixing */
+//   display: -ms-flexbox;
+//   /* Not needed if autoprefixing */
+//   display: flex;
+//   margin-left: -25px;
+//   /* gutter size offset */
+//   width: auto;
+// }
+
+// .my-masonry-grid_column {
+//   padding-left: 25px;
+//   /* gutter size */
+//   background-clip: padding-box;
+// }
+
+// /* Style your items */
+// .my-masonry-grid_column>div {
+//   /* change div to reference your elements you put in <Masonry> */
+//   background: transparent;
+//   margin-bottom: 20px;
+// }
+
+.jobs-categories .card-body a:last-child {
+  margin-bottom: 0 !important;
+}
+
+@media (max-width: 991.98px) {
+  .search-box {
+    display: block !important;
+    .search-label {
+      float: none;
+      width: 100%;
+      .form-control {
+        border-radius: 0.25rem !important;
+      }
+    }
+  }
+}
+
+// select
+
+.css-1s2u09g-control, .css-1pahdxg-control {
+  background-color: $input-bg !important;
+  border-color: $input-border-color !important;
+}
+
+.css-14el2xx-placeholder {
+  color: $input-placeholder-color !important;
+}
+
+.css-26l3qy-menu {
+  box-shadow: none !important;
+  border: 1px solid $input-border-color !important;
+}
+
+.css-4ljt47-MenuList {
+  background-color: var(--#{$prefix}custom-white) !important;
+  border-radius: 4px !important;
+}
+
+.css-319lph-ValueContainer .css-qc6sy-singleValue {
+  color: $input-color !important;
+}
+.select2-selection .css-b62m3t-container {
+  color: $input-color !important;
+}
+.css-1n7v3ny-option, .css-9gakcf-option {
+  background-color: $primary !important;
+  color: $white !important;
+}
+
+
+// rdw-editor
+
+.rdw-editor-toolbar,
+.rdw-option-wrapper,
+.rdw-editor-main {
+  border-color: $input-border-color !important;
+  background-color: var(--#{$prefix}custom-white) !important;
+}
+
+.rdw-option-wrapper {
+  border: none !important;
+  box-shadow: none !important;
+}
+
+.rdw-dropdown-wrapper {
+  background-color: $input-bg !important;
+  border-color: $input-border-color !important;
+  box-shadow: none !important;
+}
+
+.rdw-dropdown-selectedtext {
+  color: var(--#{$prefix}body-color) !important;
+}
 
 [data-layout-mode="dark"] {
   .rdw-option-wrapper,
@@ -399,6 +577,93 @@ span.flatpickr-weekday {
     }
   }
 }
+
+// ck editor
+
+.ck.ck-toolbar {
+  background-color: var(--#{$prefix}light) !important;
+  border: 1px solid $input-border-color !important;
+}
+
+.ck-reset_all :not(.ck-reset_all-excluded *),
+.ck.ck-reset_all {
+  color: var(--#{$prefix}body-color) !important;
+}
+
+.ck.ck-editor__main > .ck-editor__editable {
+  background-color: var(--#{$prefix}custom-white) !important;
+  color: var(--#{$prefix}body-color) !important;
+  height: 300px !important;
+}
+
+.ck.ck-editor__main > .ck-editor__editable:not(.ck-focused) {
+  border-color: $input-border-color !important;
+}
+
+.ck.ck-button:not(.ck-disabled):hover,
+a.ck.ck-button:not(.ck-disabled):hover,
+.ck.ck-button.ck-on,
+a.ck.ck-button.ck-on {
+  background-color: var(--#{$prefix}light) !important;
+}
+
+.ck.ck-toolbar .ck.ck-toolbar__separator {
+  background: $input-border-color !important;
+}
+
+.selectall.checkbox-wrapper-mail label:before{
+  margin-top: 0;
+}
+
+// scroll
+.ps__rail-y, .ps__rail-x{
+  z-index: 999 !important;
+}
+
+/* Change the white to any color */
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus, 
+input:-webkit-autofill:active{
+    -webkit-box-shadow: 0 0 0 30px var(--#{$prefix}custom-white) inset !important;
+    background-color: var(--#{$prefix}custom-white) !important;
+    color: var(--#{$prefix}body-color) !important;
+    -webkit-text-fill-color: var(--#{$prefix}body-color) !important;
+} 
+
+
+
+// Select2
+
+.select2-selection__control, .select__control, .select2-selection .css-13cymwt-control, .css-t3ipsp-control{
+  background-color: $input-bg !important;
+  border-color: $input-border-color !important;
+}
+
+.select2-selection__menu, .select__menu, .css-1nmdiq5-menu{
+  background-color: var(--#{$prefix}card-bg) !important;
+  box-shadow: 0 0 0 1px var(--#{$prefix}border-color) , 0 4px 11px var(--#{$prefix}border-color)  !important;
+}
+
+.select2-selection__option--is-focused, .select__option--is-focused,  .css-d7l1ni-option{
+  background-color: $primary !important;
+  color: $white !important;
+}
+
+.select__multi-value, .select2-selection__multi-value, .css-1p3m7a8-multiValue{
+  background-color: var(--#{$prefix}light) !important;
+}
+
+.select__multi-value__label, .select2-selection__multi-value__label, .css-qbdosj-Input, .css-1dimb5e-singleValue, .css-wsp0cs-MultiValueGeneric{
+  color: var(--#{$prefix}body-color) !important;
+}
+
+.select__multi-value__remove, .select2-selection__multi-value__remove{
+  background-color: var(--#{$prefix}light) !important;
+  color: var(--#{$prefix}body-color) !important;
+}
+
+// auth-logo
 
 [data-layout-mode="dark"]{
   .auth-logo{

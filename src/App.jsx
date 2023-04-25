@@ -18,6 +18,9 @@ import VerticalLayout from "./components/VerticalLayout/Index";
 import HorizontalLayout from "./components/HorizontalLayout/index";
 import { layoutTypes } from "./constants/layout";
 import { useSelector } from "react-redux";
+import fakeBackend from "./helpers/AuthType/fakeBackend";
+
+fakeBackend();
 
 const getLayout = (layoutType) => {
   let Layout = VerticalLayout;
