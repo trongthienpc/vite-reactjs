@@ -19,6 +19,11 @@ import HorizontalLayout from "./components/HorizontalLayout/index";
 import { layoutTypes } from "./constants/layout";
 import { useSelector } from "react-redux";
 import fakeBackend from "./helpers/AuthType/fakeBackend";
+import DashboardSaas from "./pages/Dashboard-saas";
+import DashboardCrypto from "./pages/Dashboard-crypto";
+import DashboardBlog from "./pages/Dashboard-blog";
+import DashboardJob from "./pages/Dashboard-jobs";
+import EcommerceProducts from "./pages/Ecommerce/EcommerceProducts";
 
 fakeBackend();
 
@@ -47,7 +52,12 @@ const App = () => {
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/dashboard-saas" element={<DashboardSaas />} />
+          <Route path="/dashboard-crypto" element={<DashboardCrypto />} />
+          <Route path="/dashboard-job" element={<DashboardJob />} />
+          <Route path="/blog" element={<DashboardBlog />} />
           <Route path="/profile" element={<UserProfile />} />
+          <Route path="/ecommerce-products" element={<EcommerceProducts />} />
         </Route>
         <Route path="/login" element={<Login />} />
         <Route path="/forget-password" element={<ForgetPassword />} />

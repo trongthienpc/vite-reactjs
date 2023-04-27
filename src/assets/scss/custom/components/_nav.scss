@@ -37,7 +37,7 @@ color: #495057;
 .nav-tabs,.nav-pills {
   > li {
       > a {
-          color: $gray-700;
+          color: var(--bs-gray-700);
           font-weight: $fw-medium;
       }
   }

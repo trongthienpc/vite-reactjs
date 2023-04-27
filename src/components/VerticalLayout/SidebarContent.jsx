@@ -38,21 +38,14 @@ const SidebarContent = () => {
       className: "has-arrow",
       category: "APPS",
       subItems: [
-        { title: "Orders", link: "/dashboard" },
-        { title: "Customers", link: "/dashboard-saas" },
-        { title: "Cart", link: "/dashboard-crypto" },
-        { title: "Blog", link: "/blog" },
-        {
-          title: (
-            <>
-              <span className="badge rounded-pill text-bg-success float-end">
-                New
-              </span>
-              Job
-            </>
-          ),
-          link: "/dashboard-job",
-        },
+        { title: "Products", link: "/ecommerce-products" },
+        { title: "Product Detail", link: "/ecommerce-product-detail" },
+        { title: "Orders", link: "/ecommerce-orders" },
+        { title: "Customers", link: "/ecommerce-customers" },
+        { title: "Cart", link: "/ecommerce-cart" },
+        { title: "Checkout", link: "/ecommerce-checkout" },
+        { title: "Shops", link: "/ecommerce-shops" },
+        { title: "Add Product", link: "/ecommerce-add-product" },
       ],
     },
 

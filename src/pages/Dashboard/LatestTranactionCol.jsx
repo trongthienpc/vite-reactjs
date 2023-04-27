@@ -28,7 +28,7 @@ const BillingName = (cell) => {
   return cell.value ? cell.value : "";
 };
 
-const Date = (cell) => {
+const Date1 = (cell) => {
   return cell.value ? cell.value : "";
 };
 
@@ -76,7 +76,7 @@ export {
   CheckBox,
   OrderId,
   BillingName,
-  Date,
+  Date1 as Date,
   Total,
   PaymentStatus,
   PaymentMethod,

@@ -15,9 +15,13 @@ export const POST_EDIT_PROFILE = "/post-fake-profile";
 //PRODUCTS
 export const GET_PRODUCTS = "/products";
 export const GET_PRODUCTS_DETAIL = "/product";
-export const ADD_NEW_PROJECT = "/add/product";
-export const UPDATE_PROJECT = "/update/product";
-export const DELETE_PROJECT = "/delete/product";
+
+//Mails
+export const GET_MAILS_LIST = "/mailslists";
+export const SELECT_FOLDER = "/folders";
+export const GET_SELECTED_MAILS = "/selectedmails";
+export const SET_FOLDER_SELECTED_MAILS = "/setfolderonmail";
+export const UPDATE_MAIL = "/update/mail";
 
 //CALENDER
 export const GET_EVENTS = "/events";
@@ -54,14 +58,28 @@ export const GET_SHOPS = "/shops";
 //CRYPTO
 export const GET_WALLET = "/wallet";
 export const GET_CRYPTO_ORDERS = "/crypto/orders";
+export const GET_CRYPTO_PRODUCTS = "/crypto-products";
 
 //INVOICES
 export const GET_INVOICES = "/invoices";
 export const GET_INVOICE_DETAIL = "/invoice";
 
+// JOBS
+export const GET_JOB_LIST = "/jobs";
+export const ADD_NEW_JOB_LIST = "/add/job";
+export const UPDATE_JOB_LIST = "/update/job";
+export const DELETE_JOB_LIST = "/delete/job";
+
+//Apply Jobs
+export const GET_APPLY_JOB = "/jobApply";
+export const DELETE_APPLY_JOB = "add/applyjob";
+
 //PROJECTS
 export const GET_PROJECTS = "/projects";
 export const GET_PROJECT_DETAIL = "/project";
+export const ADD_NEW_PROJECT = "/add/project";
+export const UPDATE_PROJECT = "/update/project";
+export const DELETE_PROJECT = "/delete/project";
 
 //TASKS
 export const GET_TASKS = "/tasks";
@@ -73,25 +91,8 @@ export const ADD_NEW_USER = "/add/user";
 export const UPDATE_USER = "/update/user";
 export const DELETE_USER = "/delete/user";
 
-//Mails
-export const GET_INBOX_MAILS = "/inboxmails";
-export const ADD_NEW_INBOX_MAIL = "/add/inboxmail";
-export const DELETE_INBOX_MAIL = "/delete/inboxmail";
-
-//starred mail
-export const GET_STARRED_MAILS = "/starredmails";
-
-//important mails
-export const GET_IMPORTANT_MAILS = "/importantmails";
-
-//Draft mail
-export const GET_DRAFT_MAILS = "/draftmails";
-
-//Send mail
-export const GET_SENT_MAILS = "/sentmails";
-
-//Trash mail
-export const GET_TRASH_MAILS = "/trashmails";
+//Blog
+export const GET_VISITOR_DATA = "/visitor-data";
 
 //dashboard charts data
 export const GET_WEEKLY_DATA = "/weekly-data";
@@ -100,4 +101,18 @@ export const GET_MONTHLY_DATA = "/monthly-data";
 
 export const TOP_SELLING_DATA = "/top-selling-data";
 
+//dashboard crypto
+export const GET_WALLET_DATA = "/wallet-balance-data";
+
+//dashboard jobs
+export const GET_STATISTICS_DATA = "/Statistics-data";
+
 export const GET_EARNING_DATA = "/earning-charts-data";
+
+export const GET_PRODUCT_COMMENTS = "/comments-product";
+
+export const ON_LIKNE_COMMENT = "/comments-product-action";
+
+export const ON_ADD_REPLY = "/comments-product-add-reply";
+
+export const ON_ADD_COMMENT = "/comments-product-add-comment";

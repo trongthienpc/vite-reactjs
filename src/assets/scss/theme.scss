@@ -4,14 +4,6 @@
 @import "./bootstrap.scss";
 @import "./app.scss";
 
-// [data-layout-mode='dark']{
-//   // @import "./bootstrap-dark.scss";
-//   @import "./variables.scss";
-//   @import "./app-dark.scss";
-//   .right-bar {
-//     right: 0
-//   }
-// }
 
 // RTL Mode
 // @import "./rtl/bootstrap-rtl";
@@ -319,7 +311,7 @@ span.flatpickr-weekday {
 }
 
 .close {
-  background: transparent;
+  // background: transparent;
   border: 0;
   font-size: 10px;
   padding: 1.35rem 1.25rem;
@@ -372,7 +364,7 @@ span.flatpickr-weekday {
 }
 
 .drawer-menu a i {
-  min-width: 2rem;
+  // min-width: 2rem;
   display: inline-block;
   min-width: 1.75rem;
   padding-bottom: 0.125em;

@@ -8,6 +8,7 @@ import { Container, Row, Col, Card, CardBody, Alert, Label } from "reactstrap";
 import profile from "../../assets/images/profile-img.png";
 import logo from "../../assets/images/logo.svg";
 const ForgetPassword = (props) => {
+  const forgetError = props.forgetError;
   const [email, setEmail] = useState("");
 
   const handleSubmit = (values) => {
@@ -54,9 +55,9 @@ const ForgetPassword = (props) => {
                     </Link>
                   </div>
                   <div className="p-2">
-                    {props.forgetError && props.forgetError ? (
+                    {forgetError ? (
                       <Alert color="danger" style={{ marginTop: "13px" }}>
-                        {props.forgetError}
+                        {forgetError}
                       </Alert>
                     ) : null}
                     {props.forgetSuccessMsg ? (

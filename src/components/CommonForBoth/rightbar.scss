@@ -27,7 +27,7 @@
         &:after{
           content: "\F012C";
           position: absolute;
-          font-family: "Material Design Icons";
+          font-family: "Material Design Icons",  Helvetica, Arial, Verdana, Tahoma, sans-serif;
           color: var(--#{$prefix}light);
           font-size: 14px;
           top: 50%;
@@ -73,7 +73,7 @@
         &:after{
           content: "\F012C";
           position: absolute;
-          font-family: "Material Design Icons";
+          font-family: "Material Design Icons", Helvetica, Arial, Verdana, Tahoma, sans-serif;
           color: $white;
           font-size: 14px;
           top: 50%;

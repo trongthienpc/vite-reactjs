@@ -8,7 +8,7 @@
   }
 
   .table-light{
-    color: $body-color;
+    color: var(--bs-table-color);
     border-color: $table-border-color;
     background-color: $table-head-bg;
   }

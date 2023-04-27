@@ -22,6 +22,8 @@ const UserProfile = (props) => {
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
   const [idx, setIdx] = useState(1);
+  const errorProps = props.error;
+  const successProps = props.success;
 
   //   useEffect(() => {
   //     if (localStorage.getItem("authUser")) {
@@ -75,10 +77,8 @@ const UserProfile = (props) => {
 
           <Row>
             <Col lg="12">
-              {props.error && props.error ? (
-                <Alert color="danger">{props.error}</Alert>
-              ) : null}
-              {props.success && props.success ? (
+              {errorProps ? <Alert color="danger">{props.error}</Alert> : null}
+              {successProps ? (
                 <Alert color="success">{props.success}</Alert>
               ) : null}
 
