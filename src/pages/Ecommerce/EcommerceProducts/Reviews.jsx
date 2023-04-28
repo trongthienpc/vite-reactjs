@@ -72,7 +72,6 @@ CommentBox.propTypes = {
   value: PropTypes.any,
   onChange: PropTypes.func,
   comment: PropTypes.any,
-  onCancelReply: PropTypes.func,
   isCommentAdd: PropTypes.any,
   onCancelComment: PropTypes.func,
   onAdd: PropTypes.func,
@@ -317,16 +316,6 @@ const Reviews = ({
       )} */}
     </div>
   );
-};
-
-Reviews.propTypes = {
-  comments: PropTypes.array,
-  reply: PropTypes.any,
-  productId: PropTypes.any,
-  onClickReply: PropTypes.func,
-  onCancelReply: PropTypes.func,
-  onAddReply: PropTypes.func,
-  onAddComment: PropTypes.func,
 };
 
 export default Reviews;

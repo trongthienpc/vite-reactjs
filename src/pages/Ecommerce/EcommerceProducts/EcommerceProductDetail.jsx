@@ -34,7 +34,7 @@ import {
   getProductComments,
   onAddReply as onAddReplyAction,
   onAddComment as onAddCommentAction,
-} from "store/actions";
+} from "../../../store/actions";
 import RecentProducts from "./RecentProducts";
 import Reviews from "./Reviews";
 
@@ -48,8 +48,8 @@ const EcommerceProductDetail = (props) => {
   const dispatch = useDispatch();
 
   const { product, productComments } = useSelector((state) => ({
-    product: state.ecommerce.product,
-    productComments: state.ecommerce.productComments,
+    product: state.Ecommerce?.product,
+    productComments: state.Ecommerce?.productComments,
   }));
 
   const [activeTab, setActiveTab] = useState("1");

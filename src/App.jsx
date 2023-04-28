@@ -24,7 +24,28 @@ import DashboardCrypto from "./pages/Dashboard-crypto";
 import DashboardBlog from "./pages/Dashboard-blog";
 import DashboardJob from "./pages/Dashboard-jobs";
 import EcommerceProducts from "./pages/Ecommerce/EcommerceProducts";
-
+import EcommerceProductDetail from "./pages/Ecommerce/EcommerceProducts/EcommerceProductDetail";
+import EcommerceOrders from "./pages/Ecommerce/EcommerceOrders";
+import EcommerceCustomers from "./pages/Ecommerce/EcommerceCustomers";
+import EcommerceCart from "./pages/Ecommerce/EcommerceCart";
+import EcommerceCheckout from "./pages/Ecommerce/EcommerceCheckout";
+import EcommerceShops from "./pages/Ecommerce/EcommerceShops";
+import EcommerceAddProduct from "./pages/Ecommerce/EcommerceAddProduct";
+import CryptoWallet from "./pages/Crypto/CryptoWallet/crypto-wallet";
+import CryptoExchange from "./pages/Crypto/crypto-exchange";
+import ProjectsList from "./pages/Projects/projects-list";
+import ProjectsGrid from "./pages/Projects/projects-grid";
+import ProjectsOverview from "./pages/Projects/ProjectOverview/projects-overview";
+import ProjectsCreate from "./pages/Projects/projects-create";
+import TasksList from "./pages/Tasks/tasks-list";
+import TasksCreate from "./pages/Tasks/tasks-create";
+import ContactsList from "./pages/Contacts/ContactList/contacts-list";
+import ContactsGrid from "./pages/Contacts/contacts-grid";
+import ContactsProfile from "./pages/Contacts/ContactsProfile/contacts-profile";
+import DragDropTables from "./pages/Tables/DragDropTables";
+import BasicTable from "./pages/Tables/BasicTables";
+import DatatableTables from "./pages/Tables/DatatableTables";
+import ResponsiveTables from "./pages/Tables/ResponsiveTables";
 fakeBackend();
 
 const getLayout = (layoutType) => {
@@ -58,6 +79,34 @@ const App = () => {
           <Route path="/blog" element={<DashboardBlog />} />
           <Route path="/profile" element={<UserProfile />} />
           <Route path="/ecommerce-products" element={<EcommerceProducts />} />
+          <Route path="/ecommerce-orders" element={<EcommerceOrders />} />
+          <Route path="/ecommerce-customers" element={<EcommerceCustomers />} />
+          <Route path="/ecommerce-cart" element={<EcommerceCart />} />
+          <Route path="/ecommerce-checkout" element={<EcommerceCheckout />} />
+          <Route path="/ecommerce-shops" element={<EcommerceShops />} />
+          <Route
+            path="/ecommerce-add-product"
+            element={<EcommerceAddProduct />}
+          />
+          <Route
+            path="/ecommerce-product-detail/:id"
+            element={<EcommerceProductDetail />}
+          />
+          <Route path="/crypto-wallet" element={<CryptoWallet />} />
+          <Route path="/crypto-exchange" element={<CryptoExchange />} />
+          <Route path="projects-list" element={<ProjectsList />} />
+          <Route path="projects-grid" element={<ProjectsGrid />} />
+          <Route path="project-overview" element={<ProjectsOverview />} />
+          <Route path="project-create" element={<ProjectsCreate />} />
+          <Route path="tasks-list" element={<TasksList />} />
+          <Route path="tasks-create" element={<TasksCreate />} />
+          <Route path="contacts-grid" element={<ContactsGrid />} />
+          <Route path="contacts-list" element={<ContactsList />} />
+          <Route path="contacts-profile" element={<ContactsProfile />} />
+          <Route path="tables-dragndrop" element={<DragDropTables />} />
+          <Route path="tables-basic" element={<BasicTable />} />
+          <Route path="tables-datatable" element={<DatatableTables />} />
+          <Route path="tables-responsive" element={<ResponsiveTables />} />
         </Route>
         <Route path="/login" element={<Login />} />
         <Route path="/forget-password" element={<ForgetPassword />} />

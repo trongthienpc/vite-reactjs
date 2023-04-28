@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import PropTypes from "prop-types";
 import { Link, useNavigate } from "react-router-dom";
 import withRouter from "../../../components/Common/withRouter";
@@ -25,8 +25,8 @@ import { isEmpty, map } from "lodash";
 //Import Star Ratings
 import StarRatings from "react-star-ratings";
 
-import Slider from "rc-slider";
-import "rc-slider/assets/index.css";
+import noUiSlider from "nouislider";
+import "nouislider/dist/nouislider.css";
 
 //Import Product Images
 import { productImages } from "../../../assets/images/product";
@@ -130,14 +130,6 @@ const EcommerceProducts = (props) => {
     }
     setProductList(filteredProducts);
   };
-  const onUpdate = (render, handle, value) => {
-    setProductList(
-      productsData.filter(
-        (product) =>
-          product.newPrice >= value[0] && product.newPrice <= value[1]
-      )
-    );
-  };
 
   const [ratingvalues, setRatingvalues] = useState([]);
   /*
@@ -180,6 +172,51 @@ const EcommerceProducts = (props) => {
     setPage(page);
   };
 
+  const onUpdate = (render, handle, value) => {
+    setProductList(
+      productsData.filter(
+        (product) =>
+          product.newPrice >= value[0] && product.newPrice <= value[1]
+      )
+    );
+  };
+
+  const sliderRef = useRef(null);
+
+  const updateProductList = (values) => {
+    setProductList(
+      productsData.filter(
+        (product) =>
+          product.newPrice >= values[0] && product.newPrice <= values[1]
+      )
+    );
+  };
+
+  useEffect(() => {
+    const sliderElement = sliderRef.current;
+
+    const slider = noUiSlider.create(sliderElement, {
+      start: [100, 500],
+      step: 10,
+      connect: true,
+      tooltips: true,
+      range: {
+        min: 0,
+        max: 600,
+      },
+    });
+
+    slider.on("update", (values) => {
+      console.log("values :>> ", values);
+      updateProductList(values);
+    });
+
+    return () => {
+      // Destroy the slider when the component unmounts
+      slider.destroy();
+    };
+  }, []);
+
   return (
     <React.Fragment>
       <div className="page-content">
@@ -207,23 +244,7 @@ const EcommerceProducts = (props) => {
                   <div className="mt-4 pt-3">
                     <h5 className="font-size-14 mb-3">Price</h5>
                     <br />
-
-                    {/* <Nouislider
-                      range={{ min: 0, max: 600 }}
-                      tooltips={true}
-                      start={[100, 500]}
-                      connect
-                      tooltipVisible
-                      step={10}
-                      onSlide={onUpdate}
-                    /> */}
-                    <Slider
-                      range
-                      value={value}
-                      onChange={handleChange}
-                      min={0}
-                      max={100}
-                    />
+                    <div ref={sliderRef} />
                   </div>
 
                   <div className="mt-4 pt-3">

@@ -23,7 +23,22 @@ import DashboardBlog from "./dashboard-blog/reducer";
 // Dashboard jobs
 import DashboardJob from "./dashboard-jobs/reducer";
 
+//crypto
+import Crypto from "./crypto/reducer";
+
+//projects
+import projects from "./projects/reducer";
+
+//tasks
+import tasks from "./tasks/reducer";
+
+//contacts
+import contacts from "./contacts/reducer";
+
 const rootReducer = combineReducers({
+  projects,
+  contacts,
+  tasks,
   Layout,
   Login,
   Ecommerce,
@@ -32,5 +47,6 @@ const rootReducer = combineReducers({
   DashboardCrypto,
   DashboardBlog,
   DashboardJob,
+  Crypto,
 });
 export default rootReducer;

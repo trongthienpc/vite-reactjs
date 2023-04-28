@@ -39,7 +39,7 @@ const SidebarContent = () => {
       category: "APPS",
       subItems: [
         { title: "Products", link: "/ecommerce-products" },
-        { title: "Product Detail", link: "/ecommerce-product-detail" },
+        { title: "Product Detail", link: "/ecommerce-product-detail/1" },
         { title: "Orders", link: "/ecommerce-orders" },
         { title: "Customers", link: "/ecommerce-customers" },
         { title: "Cart", link: "/ecommerce-cart" },
@@ -55,24 +55,74 @@ const SidebarContent = () => {
       className: "has-arrow",
       category: "PAGES",
       subItems: [
-        { title: "Orders", link: "/dashboard" },
-        { title: "Customers", link: "/dashboard-saas" },
-        { title: "Cart", link: "/dashboard-crypto" },
-        { title: "Blog", link: "/blog" },
-        {
-          title: (
-            <>
-              <span className="badge rounded-pill text-bg-success float-end">
-                New
-              </span>
-              Job
-            </>
-          ),
-          link: "/dashboard-job",
-        },
+        { title: "Wallet", link: "/crypto-wallet" },
+        { title: "Buy/Sell", link: "/crypto-buy-sell" },
+        { title: "Exchange", link: "/crypto-exchange" },
+        { title: "Lending", link: "/crypto-lending" },
+        { title: "Orders", link: "/crypto-orders" },
+        { title: "KYC Application", link: "/crypto-kyc-application" },
+        { title: "ICO Landing", link: "/crypto-ico-landing" },
+      ],
+    },
+    {
+      icon: "bx bx-briefcase-alt-2",
+      title: "Projects",
+      className: "has-arrow",
+      category: "PAGES",
+      subItems: [
+        { title: "Project Grid", link: "/project-grid" },
+        { title: "Project List", link: "/project-list" },
+        { title: "Project Overview", link: "/project-overview" },
+        { title: "Create New", link: "/project-create" },
       ],
     },
 
+    {
+      icon: "bx bx-receipt",
+      title: "Invoices",
+      className: "has-arrow",
+      category: "PAGES",
+      subItems: [
+        { title: "Invoices List", link: "/invoices-list" },
+        { title: "Invoices Detail", link: "/invoices-detail" },
+      ],
+    },
+
+    {
+      icon: "bx bx-task",
+      title: "Tasks",
+      className: "has-arrow",
+      category: "PAGES",
+      subItems: [
+        { title: "Task List", link: "/tasks-list" },
+        { title: "Create Task", link: "/tasks-create" },
+      ],
+    },
+
+    {
+      icon: "bx bxs-user-detail",
+      title: "Contacts",
+      className: "has-arrow",
+      category: "PAGES",
+      subItems: [
+        { title: "User Grid", link: "/contacts-grid" },
+        { title: "User List", link: "/contacts-list" },
+        { title: "Profile", link: "/contacts-profile" },
+      ],
+    },
+
+    {
+      icon: "bx bx-list-ul",
+      title: "Tables",
+      className: "has-arrow",
+      category: "PAGES",
+      subItems: [
+        { title: "Basic Table", link: "/table-basic" },
+        { title: "Datatable", link: "/tables-datatable" },
+        { title: "Responsive Table", link: "/tables-responsive" },
+        { title: "Drag & Drop Table", link: "/tables-dragndrop" },
+      ],
+    },
     // add more menu items here
   ];
 

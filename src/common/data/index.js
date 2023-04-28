@@ -21,7 +21,13 @@ import {
 } from "./ecommerce";
 import { invoiceList } from "./invoices";
 import { tasks } from "./tasks";
-import { projects } from "./projects";
+import {
+  projects,
+  OverviewTeamMember,
+  options,
+  projectListData,
+  series,
+} from "./projects";
 
 import { chats, contacts, groups, messages } from "./chat";
 
@@ -85,6 +91,10 @@ export {
   orders,
   productsData,
   projects,
+  OverviewTeamMember,
+  options,
+  projectListData,
+  series,
   recentProducts,
   shops,
   tasks,
