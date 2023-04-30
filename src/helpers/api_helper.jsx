@@ -13,10 +13,17 @@ const axiosApi = axios.create({
 
 axiosApi.defaults.headers.common["Authorization"] = token;
 
-axiosApi.interceptors.response.use(
-  (response) => response,
-  (error) => Promise.reject(error)
-);
+// axiosApi.interceptors.response.use(
+//   (response) => response,
+//   (error) => Promise.reject(error)
+// );
+
+axios.interceptors.response.use(null, function (error) {
+  if (error.status === 401) {
+    return defaultResponse;
+  }
+  return Promise.reject(error);
+});
 
 export async function get(url, config = {}) {
   return await axiosApi

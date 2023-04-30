@@ -83,7 +83,7 @@ box-shadow: $box-shadow;
   .has-arrow {
       &:after {
           content: "\F0140";
-          font-family: 'Material Design Icons', Helvetica, Arial, Verdana, Tahoma, sans-serif;;
+          font-family: 'Material Design Icons';
           display: block;
           float: right;
           transition: transform .2s;
@@ -1014,7 +1014,7 @@ body[data-sidebar-image] {
 
 body[data-sidebar-image="img1"] {
 .sidebar-background {
-  background-image: url("../../../images/sidebar/img1.jpg");
+  background-image: url("../../../../assets/images/sidebar/img1.jpg");
 }
 }
 

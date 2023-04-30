@@ -112,6 +112,7 @@ const TableContainer = ({
   );
 
   const generateSortingIndicator = (column) => {
+    console.log("column :>> ", column);
     return column.isSorted ? (column.isSortedDesc ? " 🔽" : " 🔼") : "";
   };
 
@@ -204,6 +205,15 @@ const TableContainer = ({
                     <div className="mb-2" {...column.getSortByToggleProps()}>
                       {column.render("Header")}
                       {generateSortingIndicator(column)}
+                      {/* {column.isSorted ? (
+                        column.isSortedDesc ? (
+                          <span>&darr;</span>
+                        ) : (
+                          <span>&uarr;</span>
+                        )
+                      ) : (
+                        ""
+                      )} */}
                     </div>
                     <Filter column={column} />
                   </th>
