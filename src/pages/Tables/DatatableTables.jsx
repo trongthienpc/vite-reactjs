@@ -1,41 +1,61 @@
 // src/components/filter.
 import React, { useMemo } from "react";
 import PropTypes from "prop-types";
-
+import { CSVLink, CSVDownload } from "react-csv";
 //import components
 import Breadcrumbs from "../../components/Common/Breadcrumb";
-import TableContainer from "../../components/Common/TableContainer";
+import DataTable from "react-data-table-component";
+import "./dataTable.css";
+function FilterComponent({ filterText, onFilter, onClear }) {
+  return (
+    <div className="d-flex mb-2">
+      <input
+        className="form-control"
+        type="text"
+        placeholder="Search"
+        value={filterText}
+        onChange={onFilter}
+      />
+      <button className="btn btn-primary mx-2" onClick={onClear}>
+        Clear
+      </button>
+    </div>
+  );
+}
 
 function DatatableTables() {
-  const columns = useMemo(
-    () => [
-      {
-        Header: "Name",
-        accessor: "name",
-      },
-      {
-        Header: "Position",
-        accessor: "position",
-      },
-      {
-        Header: "Office",
-        accessor: "office",
-      },
-      {
-        Header: "Age",
-        accessor: "age",
-      },
-      {
-        Header: "Start date",
-        accessor: "startDate",
-      },
-      {
-        Header: "Salary",
-        accessor: "salary",
-      },
-    ],
-    []
-  );
+  const columns = [
+    {
+      name: "Name",
+      selector: (row) => highlightFilterText(row.name, filterText),
+      sortable: true,
+    },
+    {
+      name: "Age",
+      selector: (row) => highlightFilterText(row.age.toString(), filterText),
+      sortable: true,
+    },
+    {
+      name: "Position",
+      selector: (row) => highlightFilterText(row.position, filterText),
+      sortable: true,
+    },
+    {
+      name: "Office",
+      selector: (row) => highlightFilterText(row.office, filterText),
+      sortable: true,
+    },
+    {
+      name: "Start Date",
+      selector: (row) => highlightFilterText(row.startDate, filterText),
+      sortable: true,
+    },
+    {
+      name: "Salary",
+      selector: (row) => highlightFilterText(row.salary, filterText),
+      sortable: true,
+    },
+  ];
 
   const data = [
     {
@@ -256,21 +276,111 @@ function DatatableTables() {
     },
   ];
 
+  const [filterText, setFilterText] = React.useState("");
+  const [resetPaginationToggle, setResetPaginationToggle] =
+    React.useState(false);
+  const filteredItems = data.filter((item) =>
+    ["name", "office", "position", "startDate", "age"].some((key) => {
+      const value = item[key];
+      if (typeof value === "string") {
+        const match = value.toLowerCase().includes(filterText.toLowerCase());
+        if (match) {
+          item.matchedField = key; // Add a property to the item to indicate the matched field
+        }
+        return match;
+      } else if (typeof value === "number") {
+        const match = value.toString().includes(filterText);
+        if (match) {
+          item.matchedField = key;
+        }
+        return match;
+      }
+      return false;
+    })
+  );
+
+  const subHeaderComponentMemo = React.useMemo(() => {
+    const handleClear = () => {
+      if (filterText) {
+        setResetPaginationToggle(!resetPaginationToggle);
+        setFilterText("");
+      }
+    };
+
+    return (
+      <FilterComponent
+        onFilter={(e) => setFilterText(e.target.value)}
+        onClear={handleClear}
+        filterText={filterText}
+      />
+    );
+  }, [filterText, resetPaginationToggle]);
+
+  function highlightFilterText(text, filterText) {
+    const regex = new RegExp(`(${filterText})`, "gi");
+    const parts = text.split(regex);
+    return parts.map((part, i) => {
+      if (part.toLowerCase() === filterText.toLowerCase()) {
+        return (
+          <span key={i} style={{ backgroundColor: "yellow" }}>
+            {part}
+          </span>
+        );
+      } else {
+        return <span key={i}>{part}</span>;
+      }
+    });
+  }
+
   //meta title
   document.title = "Data Tables | Skote - React Admin & Dashboard Template";
 
+  const CustomExportCSV = ({ title, data }) => {
+    console.log("data :>> ", data);
+    const csvData = React.useMemo(() => {
+      const header = columns.map((column) => column.name);
+      console.log("header :>> ", header);
+      const rows = data.map((item) =>
+        columns.map((column) => {
+          // console.log("item[column.selector] :>> ", column);
+          return item[column.name.toLowerCase()];
+        })
+      );
+      console.log("rows :>> ", rows);
+      return [header, ...rows];
+    }, [data]);
+
+    return (
+      <CSVLink
+        data={csvData}
+        filename={`${title}.csv`}
+        className="btn btn-primary float-end ms-2"
+        target="_blank"
+      >
+        Export CSV
+      </CSVLink>
+    );
+  };
+
+  const actions = React.useMemo(
+    () => <CustomExportCSV title="csv-export-test" data={filteredItems} />,
+    [filteredItems]
+  );
   return (
     <div className="page-content">
       <div className="container-fluid">
         <Breadcrumbs title="Tables" breadcrumbItem="Data Tables" />
-        {/* <Table columns={columns} data={data} /> */}
-        <TableContainer
+
+        <DataTable
           columns={columns}
-          data={data}
-          isGlobalFilter={true}
-          isAddOptions={false}
-          customPageSize={10}
-          className="custom-header-css"
+          data={filteredItems}
+          pagination={true}
+          subHeader
+          subHeaderComponent={subHeaderComponentMemo}
+          selectableRows
+          persistTableHead
+          highlightOnHover
+          actions={actions}
         />
       </div>
     </div>

@@ -69,6 +69,7 @@ function* changeLayout({ payload: layout }) {
  */
 function* changeLayoutMode({ payload: mode }) {
   try {
+    console.log("mode :>> ", mode);
     yield call(changeBodyAttribute, "data-layout-mode", mode);
   } catch (error) {
     // console.log(error);

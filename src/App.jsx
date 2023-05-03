@@ -46,6 +46,7 @@ import DragDropTables from "./pages/Tables/DragDropTables";
 import BasicTable from "./pages/Tables/BasicTables";
 import DatatableTables from "./pages/Tables/DatatableTables";
 import ResponsiveTables from "./pages/Tables/ResponsiveTables";
+import PageBlank from "./pages/Utilities/page-starter";
 fakeBackend();
 
 const getLayout = (layoutType) => {
@@ -107,6 +108,7 @@ const App = () => {
           <Route path="tables-basic" element={<BasicTable />} />
           <Route path="tables-datatable" element={<DatatableTables />} />
           <Route path="tables-responsive" element={<ResponsiveTables />} />
+          <Route path="blank-page" element={<PageBlank />} />
         </Route>
         <Route path="/login" element={<Login />} />
         <Route path="/forget-password" element={<ForgetPassword />} />

@@ -464,9 +464,9 @@ const RightSidebar = () => {
                           layout.leftSideBarThemeImage ===
                           leftBarThemeImageTypes.IMG1
                         }
-                        onChange={(e) =>
-                          dispatch(changeSidebarThemeImage(e.target.value))
-                        }
+                        onChange={(e) => {
+                          dispatch(changeSidebarThemeImage(e.target.value));
+                        }}
                       />
 
                       <label htmlFor="leftsidebarThemebgimg1">

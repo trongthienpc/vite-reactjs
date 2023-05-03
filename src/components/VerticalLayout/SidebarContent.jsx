@@ -117,7 +117,18 @@ const SidebarContent = () => {
       className: "has-arrow",
       category: "PAGES",
       subItems: [
-        { title: "Basic Table", link: "/table-basic" },
+        { title: "Datatable", link: "/tables-datatable" },
+        { title: "Responsive Table", link: "/tables-responsive" },
+        { title: "Drag & Drop Table", link: "/tables-dragndrop" },
+      ],
+    },
+    {
+      icon: "bx bx-file",
+      title: "Utilities",
+      className: "has-arrow",
+      category: "PAGES",
+      subItems: [
+        { title: "Blank Page", link: "/blank-page" },
         { title: "Datatable", link: "/tables-datatable" },
         { title: "Responsive Table", link: "/tables-responsive" },
         { title: "Drag & Drop Table", link: "/tables-dragndrop" },
